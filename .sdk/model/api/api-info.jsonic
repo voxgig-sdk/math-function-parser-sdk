@@ -1,0 +1,32 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Oli Zimpasser"
+        url: "https://math.oglimmer.de"
+      }
+      description: "A REST API to parse and resolve math functions. Written in C++ with oat++."
+      license: {
+        name: "Apache License, Version 2.0"
+        url: "http://www.apache.org/licenses/LICENSE-2.0"
+      }
+      servers: [
+        {
+          description: "server on oglimmer.de"
+          url: "https://math.oglimmer.de"
+        }
+        {
+          description: "server on localhost"
+          url: "http://localhost:8000"
+        }
+      ]
+      title: "Mathematical Function Parser Service"
+      version: "1.0"
+    }
+  }
+}
+
+}

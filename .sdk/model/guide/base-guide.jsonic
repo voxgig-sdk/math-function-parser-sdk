@@ -1,0 +1,29 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 4
+  metrics: count: method: 4
+
+  entity: calc: {
+    path: "/v1/calc": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: resolve: {
+    path: "/v1/resolve": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: tokenize: {
+    path: "/v1/ast": {
+      op: list: method: *GET
+    }
+    path: "/v1/tokenize": {
+      op: list: method: *GET
+    }
+  }
+
+}

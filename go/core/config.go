@@ -1,0 +1,284 @@
+package core
+
+func MakeConfig() map[string]any {
+	return map[string]any{
+		"main": map[string]any{
+			"name": "MathFunctionParser",
+		},
+		"feature": map[string]any{
+			"test": map[string]any{
+				"options": map[string]any{
+					"active": false,
+				},
+			},
+		},
+		"options": map[string]any{
+			"base": "https://math.oglimmer.de",
+			"auth": map[string]any{
+				"prefix": "Bearer",
+			},
+			"headers": map[string]any{
+				"content-type": "application/json",
+			},
+			"entity": map[string]any{
+				"calc": map[string]any{},
+				"resolve": map[string]any{},
+				"tokenize": map[string]any{},
+			},
+		},
+		"entity": map[string]any{
+			"calc": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "data",
+						"req": false,
+						"type": "`$STRING`",
+						"active": true,
+						"index$": 0,
+					},
+					map[string]any{
+						"name": "type",
+						"req": false,
+						"type": "`$STRING`",
+						"active": true,
+						"index$": 1,
+					},
+				},
+				"name": "calc",
+				"op": map[string]any{
+					"list": map[string]any{
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"kind": "query",
+											"name": "expression",
+											"orig": "expression",
+											"reqd": true,
+											"type": "`$STRING`",
+											"active": true,
+										},
+										map[string]any{
+											"kind": "query",
+											"name": "x",
+											"orig": "x",
+											"reqd": false,
+											"type": "`$STRING`",
+											"active": true,
+										},
+									},
+								},
+								"method": "GET",
+								"orig": "/v1/calc",
+								"parts": []any{
+									"v1",
+									"calc",
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"expression",
+										"x",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"active": true,
+								"index$": 0,
+							},
+						},
+						"input": "data",
+						"key$": "list",
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
+			"resolve": map[string]any{
+				"fields": []any{},
+				"name": "resolve",
+				"op": map[string]any{
+					"load": map[string]any{
+						"name": "load",
+						"points": []any{
+							map[string]any{
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"kind": "query",
+											"name": "expression",
+											"orig": "expression",
+											"reqd": true,
+											"type": "`$STRING`",
+											"active": true,
+										},
+										map[string]any{
+											"kind": "query",
+											"name": "x",
+											"orig": "x",
+											"reqd": false,
+											"type": "`$STRING`",
+											"active": true,
+										},
+									},
+								},
+								"method": "GET",
+								"orig": "/v1/resolve",
+								"parts": []any{
+									"v1",
+									"resolve",
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"expression",
+										"x",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"active": true,
+								"index$": 0,
+							},
+						},
+						"input": "data",
+						"key$": "load",
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
+			"tokenize": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "data",
+						"req": false,
+						"type": "`$STRING`",
+						"active": true,
+						"index$": 0,
+					},
+					map[string]any{
+						"name": "type",
+						"req": false,
+						"type": "`$STRING`",
+						"active": true,
+						"index$": 1,
+					},
+				},
+				"name": "tokenize",
+				"op": map[string]any{
+					"list": map[string]any{
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"kind": "query",
+											"name": "expression",
+											"orig": "expression",
+											"reqd": true,
+											"type": "`$STRING`",
+											"active": true,
+										},
+										map[string]any{
+											"kind": "query",
+											"name": "x",
+											"orig": "x",
+											"reqd": false,
+											"type": "`$STRING`",
+											"active": true,
+										},
+									},
+								},
+								"method": "GET",
+								"orig": "/v1/ast",
+								"parts": []any{
+									"v1",
+									"ast",
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"expression",
+										"x",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"active": true,
+								"index$": 0,
+							},
+							map[string]any{
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"kind": "query",
+											"name": "expression",
+											"orig": "expression",
+											"reqd": true,
+											"type": "`$STRING`",
+											"active": true,
+										},
+										map[string]any{
+											"kind": "query",
+											"name": "x",
+											"orig": "x",
+											"reqd": false,
+											"type": "`$STRING`",
+											"active": true,
+										},
+									},
+								},
+								"method": "GET",
+								"orig": "/v1/tokenize",
+								"parts": []any{
+									"v1",
+									"tokenize",
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"expression",
+										"x",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"active": true,
+								"index$": 1,
+							},
+						},
+						"input": "data",
+						"key$": "list",
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
+		},
+	}
+}
+
+func makeFeature(name string) Feature {
+	switch name {
+	case "test":
+		if NewTestFeatureFunc != nil {
+			return NewTestFeatureFunc()
+		}
+	default:
+		if NewBaseFeatureFunc != nil {
+			return NewBaseFeatureFunc()
+		}
+	}
+	return nil
+}

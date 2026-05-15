@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "calc": {
+      "CALC00": {
+        "data": "s14",
+        "type": "s15"
+      },
+      "CALC01": {
+        "data": "s28",
+        "type": "s29"
+      },
+      "CALC02": {
+        "data": "s3c",
+        "type": "s3d"
+      }
+    }
+  },
+  "new": {
+    "calc": {
+      "calc_ref01": {
+        "data": "s50",
+        "type": "s51"
+      }
+    }
+  }
+}
