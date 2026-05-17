@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/math-function-parser-sdk/go/utility/struct"
 )
 
 type MathFunctionParserSDK struct {

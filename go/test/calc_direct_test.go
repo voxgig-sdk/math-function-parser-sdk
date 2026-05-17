@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/math-function-parser-sdk"
-	"github.com/voxgig-sdk/math-function-parser-sdk/core"
+	sdk "github.com/voxgig-sdk/math-function-parser-sdk/go"
+	"github.com/voxgig-sdk/math-function-parser-sdk/go/core"
 )
 
 func TestCalcDirect(t *testing.T) {

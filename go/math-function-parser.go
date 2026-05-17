@@ -1,10 +1,10 @@
 package voxgigmathfunctionparsersdk
 
 import (
-	"github.com/voxgig-sdk/math-function-parser-sdk/core"
-	"github.com/voxgig-sdk/math-function-parser-sdk/entity"
-	"github.com/voxgig-sdk/math-function-parser-sdk/feature"
-	_ "github.com/voxgig-sdk/math-function-parser-sdk/utility"
+	"github.com/voxgig-sdk/math-function-parser-sdk/go/core"
+	"github.com/voxgig-sdk/math-function-parser-sdk/go/entity"
+	"github.com/voxgig-sdk/math-function-parser-sdk/go/feature"
+	_ "github.com/voxgig-sdk/math-function-parser-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

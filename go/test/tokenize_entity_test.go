@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/math-function-parser-sdk"
-	"github.com/voxgig-sdk/math-function-parser-sdk/core"
+	sdk "github.com/voxgig-sdk/math-function-parser-sdk/go"
+	"github.com/voxgig-sdk/math-function-parser-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/math-function-parser-sdk/go/utility/struct"
 )
 
 func TestTokenizeEntity(t *testing.T) {
