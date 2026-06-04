@@ -119,7 +119,6 @@ func calcBasicSetup(extra map[string]any) *entityTestSetup {
 		"MATHFUNCTIONPARSER_TEST_CALC_ENTID": idmap,
 		"MATHFUNCTIONPARSER_TEST_LIVE":      "FALSE",
 		"MATHFUNCTIONPARSER_TEST_EXPLAIN":   "FALSE",
-		"MATHFUNCTIONPARSER_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["MATHFUNCTIONPARSER_TEST_CALC_ENTID"])
@@ -130,7 +129,6 @@ func calcBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["MATHFUNCTIONPARSER_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["MATHFUNCTIONPARSER_APIKEY"],
 			},
 			extra,
 		})

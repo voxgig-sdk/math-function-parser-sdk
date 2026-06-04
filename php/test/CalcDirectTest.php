@@ -68,14 +68,12 @@ function calc_direct_setup($mockres)
     $env = Runner::env_override([
         "MATHFUNCTIONPARSER_TEST_CALC_ENTID" => [],
         "MATHFUNCTIONPARSER_TEST_LIVE" => "FALSE",
-        "MATHFUNCTIONPARSER_APIKEY" => "NONE",
     ]);
 
     $live = $env["MATHFUNCTIONPARSER_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["MATHFUNCTIONPARSER_APIKEY"],
         ];
         $client = new MathFunctionParserSDK($merged_opts);
         return [

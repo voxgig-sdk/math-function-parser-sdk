@@ -92,7 +92,6 @@ def _calc_basic_setup(extra):
         "MATHFUNCTIONPARSER_TEST_CALC_ENTID": idmap,
         "MATHFUNCTIONPARSER_TEST_LIVE": "FALSE",
         "MATHFUNCTIONPARSER_TEST_EXPLAIN": "FALSE",
-        "MATHFUNCTIONPARSER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ def _calc_basic_setup(extra):
     if env.get("MATHFUNCTIONPARSER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("MATHFUNCTIONPARSER_APIKEY"),
             },
             extra or {},
         ])

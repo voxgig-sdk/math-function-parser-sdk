@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'MATHFUNCTIONPARSER_TEST_CALC_ENTID': {},
     'MATHFUNCTIONPARSER_TEST_LIVE': 'FALSE',
-    'MATHFUNCTIONPARSER_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.MATHFUNCTIONPARSER_TEST_LIVE
 
   if (live) {
     const client = new MathFunctionParserSDK({
-      apikey: env.MATHFUNCTIONPARSER_APIKEY,
     })
 
     let idmap: any = env['MATHFUNCTIONPARSER_TEST_CALC_ENTID']

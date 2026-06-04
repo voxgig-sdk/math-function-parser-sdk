@@ -99,14 +99,12 @@ func resolveDirectSetup(mockres any) *resolveDirectSetupResult {
 	env := envOverride(map[string]any{
 		"MATHFUNCTIONPARSER_TEST_RESOLVE_ENTID": map[string]any{},
 		"MATHFUNCTIONPARSER_TEST_LIVE":    "FALSE",
-		"MATHFUNCTIONPARSER_APIKEY":       "NONE",
 	})
 
 	live := env["MATHFUNCTIONPARSER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["MATHFUNCTIONPARSER_APIKEY"],
 		}
 		client := sdk.NewMathFunctionParserSDK(mergedOpts)
 

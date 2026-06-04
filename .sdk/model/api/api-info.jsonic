@@ -25,8 +25,29 @@ main: {
       ]
       title: "Mathematical Function Parser Service"
       version: "1.0"
+      tagline: "Parse, tokenize, and evaluate math expressions with variable support via a REST API"
+      homepage: "https://math.oglimmer.de"
+      docs_url: "https://math.oglimmer.de/swagger/ui"
+      license_short: "Apache License, Version 2.0"
+      license_md: `- API is published under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+- Service authored by Oli Zimpasser; attribute the upstream service when redistributing results.
+- No explicit terms-of-use are published on the API homepage; treat usage as best-effort and check the Swagger UI for the most current details.`
+      about_md: `The Mathematical Function Parser Service is a small REST API by [Oli Zimpasser](https://math.oglimmer.de) that parses and evaluates mathematical expressions. It is written in C++ on top of the [oat++](https://oatpp.io) framework and exposes its OpenAPI 3.0 contract through a [Swagger UI](https://math.oglimmer.de/swagger/ui).
+
+What you get from the API:
+- Evaluate an expression to a numeric result (e.g. \`3+4\`).
+- Tokenize an expression into typed tokens.
+- Return the abstract syntax tree (AST) for an expression.
+- A combined endpoint that returns the result, parsed expression, tokens, AST, and processing time in a single response.
+- Optional variable binding via the \`x\` query parameter, so expressions like \`2*x+1\` can be resolved against a supplied value.
+
+Operational notes: all endpoints are simple \`GET\` calls under \`/v1/\` and take the formula via the \`expression\` query parameter. CORS is enabled, so the service can be called directly from a browser. The community catalogue reports an average response time around 162 ms and a 100% reliability score, but no formal SLA, authentication, or rate-limit policy is documented.`
+      entity_desc: {
+        calc: "Combined endpoint that tokenizes, parses, and resolves an expression, returning the result together with the parsed form, AST, tokens, and processing time at `GET /v1/calc`."
+        resolve: "Evaluates a math expression (with optional variable `x`) and returns the numeric result as plain text at `GET /v1/resolve`."
+        tokenize: "Breaks an expression into its typed tokens (type and data fields) at `GET /v1/tokenize`."
+      }
+      auth: false
     }
   }
-}
-
 }

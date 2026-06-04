@@ -83,7 +83,6 @@ def calc_basic_setup(extra)
     "MATHFUNCTIONPARSER_TEST_CALC_ENTID" => idmap,
     "MATHFUNCTIONPARSER_TEST_LIVE" => "FALSE",
     "MATHFUNCTIONPARSER_TEST_EXPLAIN" => "FALSE",
-    "MATHFUNCTIONPARSER_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +94,6 @@ def calc_basic_setup(extra)
   if env["MATHFUNCTIONPARSER_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["MATHFUNCTIONPARSER_APIKEY"],
       },
       extra || {},
     ])
