@@ -10,7 +10,7 @@ The PHP SDK for the MathFunctionParser API — an entity-oriented client using P
 
 ## Install
 ```bash
-composer require voxgig/math-function-parser-sdk
+composer require voxgig-sdk/math-function-parser
 ```
 
 

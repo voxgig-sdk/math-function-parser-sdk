@@ -10,7 +10,7 @@ The TypeScript SDK for the MathFunctionParser API — a type-safe, entity-orient
 
 ## Install
 ```bash
-npm install math-function-parser
+npm install @voxgig-sdk/math-function-parser
 ```
 ## Tutorial: your first API call
 

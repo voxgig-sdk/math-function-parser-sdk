@@ -10,7 +10,7 @@ The Lua SDK for the MathFunctionParser API — an entity-oriented client using L
 
 ## Install
 ```bash
-luarocks install math-function-parser-sdk
+luarocks install voxgig-sdk-math-function-parser
 ```
 
 If the module is not yet published, add the source directory to

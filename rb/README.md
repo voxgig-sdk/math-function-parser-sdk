@@ -10,13 +10,13 @@ The Ruby SDK for the MathFunctionParser API — an entity-oriented client using 
 
 ## Install
 ```bash
-gem install math-function-parser-sdk
+gem install voxgig-sdk-math-function-parser
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "math-function-parser-sdk"
+gem "voxgig-sdk-math-function-parser"
 ```
 
 Then run:

@@ -10,7 +10,7 @@ The Python SDK for the MathFunctionParser API — an entity-oriented client foll
 
 ## Install
 ```bash
-pip install math-function-parser-sdk
+pip install voxgig-sdk-math-function-parser
 ```
 
 Or install from source:
