@@ -62,12 +62,14 @@ function resolve_direct_setup(mockres)
   local env = runner.env_override({
     ["MATHFUNCTIONPARSER_TEST_RESOLVE_ENTID"] = {},
     ["MATHFUNCTIONPARSER_TEST_LIVE"] = "FALSE",
+    ["MATHFUNCTIONPARSER_APIKEY"] = "NONE",
   })
 
   local live = env["MATHFUNCTIONPARSER_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["MATHFUNCTIONPARSER_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

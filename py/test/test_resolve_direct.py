@@ -59,12 +59,14 @@ def _resolve_direct_setup(mockres):
     env = runner.env_override({
         "MATHFUNCTIONPARSER_TEST_RESOLVE_ENTID": {},
         "MATHFUNCTIONPARSER_TEST_LIVE": "FALSE",
+        "MATHFUNCTIONPARSER_APIKEY": "NONE",
     })
 
     live = env.get("MATHFUNCTIONPARSER_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("MATHFUNCTIONPARSER_APIKEY"),
         }
         client = MathFunctionParserSDK(merged_opts)
         return {

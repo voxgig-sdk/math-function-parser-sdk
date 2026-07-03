@@ -91,6 +91,7 @@ function resolve_basic_setup(extra)
     ["MATHFUNCTIONPARSER_TEST_RESOLVE_ENTID"] = idmap,
     ["MATHFUNCTIONPARSER_TEST_LIVE"] = "FALSE",
     ["MATHFUNCTIONPARSER_TEST_EXPLAIN"] = "FALSE",
+    ["MATHFUNCTIONPARSER_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ function resolve_basic_setup(extra)
   if env["MATHFUNCTIONPARSER_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["MATHFUNCTIONPARSER_APIKEY"],
       },
       extra or {},
     })

@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'MATH_FUNCTION_PARSER_TEST_TOKENIZE_ENTID': idmap,
     'MATH_FUNCTION_PARSER_TEST_LIVE': 'FALSE',
     'MATH_FUNCTION_PARSER_TEST_EXPLAIN': 'FALSE',
+    'MATH_FUNCTION_PARSER_APIKEY': 'NONE',
   })
 
   idmap = env['MATH_FUNCTION_PARSER_TEST_TOKENIZE_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new MathFunctionParserSDK(merge([
       {
+        apikey: env.MATH_FUNCTION_PARSER_APIKEY,
       },
       extra
     ]))

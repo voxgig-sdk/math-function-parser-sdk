@@ -1,21 +1,8 @@
 # MathFunctionParser SDK
 
-Parse, tokenize, and evaluate math expressions with variable support via a REST API
+Mathematical Function Parser Service client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Mathematical Function Parser Service
-
-The Mathematical Function Parser Service is a small REST API by [Oli Zimpasser](https://math.oglimmer.de) that parses and evaluates mathematical expressions. It is written in C++ on top of the [oat++](https://oatpp.io) framework and exposes its OpenAPI 3.0 contract through a [Swagger UI](https://math.oglimmer.de/swagger/ui).
-
-What you get from the API:
-- Evaluate an expression to a numeric result (e.g. `3+4`).
-- Tokenize an expression into typed tokens.
-- Return the abstract syntax tree (AST) for an expression.
-- A combined endpoint that returns the result, parsed expression, tokens, AST, and processing time in a single response.
-- Optional variable binding via the `x` query parameter, so expressions like `2*x+1` can be resolved against a supplied value.
-
-Operational notes: all endpoints are simple `GET` calls under `/v1/` and take the formula via the `expression` query parameter. CORS is enabled, so the service can be called directly from a browser. The community catalogue reports an average response time around 162 ms and a 100% reliability score, but no formal SLA, authentication, or rate-limit policy is documented.
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install math-function-parser-sdk
 luarocks install math-function-parser-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { MathFunctionParserSDK } from 'math-function-parser'
 
-const client = new MathFunctionParserSDK({})
+const client = new MathFunctionParserSDK({
+  apikey: process.env.MATH-FUNCTION-PARSER_APIKEY,
+})
 
 // List all calcs
 const calcs = await client.Calc().list()
+console.log(calcs.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Calc** | Combined endpoint that tokenizes, parses, and resolves an expression, returning the result together with the parsed form, AST, tokens, and processing time at `GET /v1/calc`. | `/v1/calc` |
-| **Resolve** | Evaluates a math expression (with optional variable `x`) and returns the numeric result as plain text at `GET /v1/resolve`. | `/v1/resolve` |
-| **Tokenize** | Breaks an expression into its typed tokens (type and data fields) at `GET /v1/tokenize`. | `/v1/ast` |
+| **Calc** |  | `/v1/calc` |
+| **Resolve** |  | `/v1/resolve` |
+| **Tokenize** |  | `/v1/ast` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -113,12 +102,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from mathfunctionparser_sdk import MathFunctionParserSDK
 
-client = MathFunctionParserSDK({})
+client = MathFunctionParserSDK({
+    "apikey": os.environ.get("MATH-FUNCTION-PARSER_APIKEY"),
+})
 
 # List all calcs
-calcs, err = client.Calc(None).list(None, None)
+calcs, err = client.Calc().list()
+print(calcs)
 ```
 
 ### PHP
@@ -127,10 +120,13 @@ calcs, err = client.Calc(None).list(None, None)
 <?php
 require_once 'mathfunctionparser_sdk.php';
 
-$client = new MathFunctionParserSDK([]);
+$client = new MathFunctionParserSDK([
+    "apikey" => getenv("MATH-FUNCTION-PARSER_APIKEY"),
+]);
 
 // List all calcs
-[$calcs, $err] = $client->Calc(null)->list(null, null);
+[$calcs, $err] = $client->Calc()->list();
+print_r($calcs);
 ```
 
 ### Golang
@@ -138,10 +134,13 @@ $client = new MathFunctionParserSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/math-function-parser-sdk/go"
 
-client := sdk.NewMathFunctionParserSDK(map[string]any{})
+client := sdk.NewMathFunctionParserSDK(map[string]any{
+    "apikey": os.Getenv("MATH-FUNCTION-PARSER_APIKEY"),
+})
 
 // List all calcs
 calcs, err := client.Calc(nil).List(nil, nil)
+fmt.Println(calcs)
 ```
 
 ### Ruby
@@ -149,10 +148,13 @@ calcs, err := client.Calc(nil).List(nil, nil)
 ```ruby
 require_relative "MathFunctionParser_sdk"
 
-client = MathFunctionParserSDK.new({})
+client = MathFunctionParserSDK.new({
+  "apikey" => ENV["MATH-FUNCTION-PARSER_APIKEY"],
+})
 
 # List all calcs
-calcs, err = client.Calc(nil).list(nil, nil)
+calcs, err = client.Calc().list
+puts calcs
 ```
 
 ### Lua
@@ -160,10 +162,13 @@ calcs, err = client.Calc(nil).list(nil, nil)
 ```lua
 local sdk = require("math-function-parser_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("MATH-FUNCTION-PARSER_APIKEY"),
+})
 
 -- List all calcs
-local calcs, err = client:Calc(nil):list(nil, nil)
+local calcs, err = client:Calc():list()
+print(calcs)
 ```
 
 ## Unit testing in offline mode
@@ -182,25 +187,21 @@ const result = await client.Calc().load({ id: 'test01' })
 ### Python
 
 ```python
-client = MathFunctionParserSDK.test(None, None)
-result, err = client.Calc(None).load(
-    {"id": "test01"}, None
-)
+client = MathFunctionParserSDK.test()
+result, err = client.Calc().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = MathFunctionParserSDK::test(null, null);
-[$result, $err] = $client->Calc(null)->load(
-    ["id" => "test01"], null
-);
+$client = MathFunctionParserSDK::test();
+[$result, $err] = $client->Calc()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Calc(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -209,19 +210,15 @@ result, err := client.Calc(nil).Load(
 ### Ruby
 
 ```ruby
-client = MathFunctionParserSDK.test(nil, nil)
-result, err = client.Calc(nil).load(
-  { "id" => "test01" }, nil
-)
+client = MathFunctionParserSDK.test
+result, err = client.Calc().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Calc(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Calc():load({ id = "test01" })
 ```
 
 ## How it works
@@ -325,15 +322,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Mathematical Function Parser Service
-
-- Upstream: [https://math.oglimmer.de](https://math.oglimmer.de)
-- API docs: [https://math.oglimmer.de/swagger/ui](https://math.oglimmer.de/swagger/ui)
-
-- API is published under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
-- Service authored by Oli Zimpasser; attribute the upstream service when redistributing results.
-- No explicit terms-of-use are published on the API homepage; treat usage as best-effort and check the Swagger UI for the most current details.
 
 ---
 
