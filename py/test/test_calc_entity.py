@@ -50,8 +50,7 @@ class TestCalcEntity:
         calc_ref01_ent = client.Calc(None)
         calc_ref01_match = {}
 
-        calc_ref01_list_result, err = calc_ref01_ent.list(calc_ref01_match, None)
-        assert err is None
+        calc_ref01_list_result = calc_ref01_ent.list(calc_ref01_match, None)
         assert isinstance(calc_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _calc_basic_setup(extra):
         "MATHFUNCTIONPARSER_TEST_CALC_ENTID": idmap,
         "MATHFUNCTIONPARSER_TEST_LIVE": "FALSE",
         "MATHFUNCTIONPARSER_TEST_EXPLAIN": "FALSE",
-        "MATHFUNCTIONPARSER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _calc_basic_setup(extra):
     if env.get("MATHFUNCTIONPARSER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("MATHFUNCTIONPARSER_APIKEY"),
             },
             extra or {},
         ])

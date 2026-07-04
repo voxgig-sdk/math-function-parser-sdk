@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch TokenizeListMatch
+---@param ctrl? table
+---@return Tokenize[]
+---@return string? err
 function TokenizeEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

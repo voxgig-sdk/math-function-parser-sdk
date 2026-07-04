@@ -93,14 +93,12 @@ func tokenizeDirectSetup(mockres any) *tokenizeDirectSetupResult {
 	env := envOverride(map[string]any{
 		"MATHFUNCTIONPARSER_TEST_TOKENIZE_ENTID": map[string]any{},
 		"MATHFUNCTIONPARSER_TEST_LIVE":    "FALSE",
-		"MATHFUNCTIONPARSER_APIKEY":       "NONE",
 	})
 
 	live := env["MATHFUNCTIONPARSER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["MATHFUNCTIONPARSER_APIKEY"],
 		}
 		client := sdk.NewMathFunctionParserSDK(mergedOpts)
 

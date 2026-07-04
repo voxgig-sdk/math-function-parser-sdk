@@ -50,8 +50,7 @@ class TestTokenizeEntity:
         tokenize_ref01_ent = client.Tokenize(None)
         tokenize_ref01_match = {}
 
-        tokenize_ref01_list_result, err = tokenize_ref01_ent.list(tokenize_ref01_match, None)
-        assert err is None
+        tokenize_ref01_list_result = tokenize_ref01_ent.list(tokenize_ref01_match, None)
         assert isinstance(tokenize_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _tokenize_basic_setup(extra):
         "MATHFUNCTIONPARSER_TEST_TOKENIZE_ENTID": idmap,
         "MATHFUNCTIONPARSER_TEST_LIVE": "FALSE",
         "MATHFUNCTIONPARSER_TEST_EXPLAIN": "FALSE",
-        "MATHFUNCTIONPARSER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _tokenize_basic_setup(extra):
     if env.get("MATHFUNCTIONPARSER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("MATHFUNCTIONPARSER_APIKEY"),
             },
             extra or {},
         ])

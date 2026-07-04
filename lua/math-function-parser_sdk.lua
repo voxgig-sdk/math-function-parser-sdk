@@ -244,18 +244,57 @@ end
 
 
 
+-- Idiomatic facade: client:calc():list() / client:calc():load({ id = ... })
+function MathFunctionParserSDK:calc(data)
+  local EntityMod = require("entity.calc_entity")
+  if data == nil then
+    if self._calc == nil then
+      self._calc = EntityMod.new(self, nil)
+    end
+    return self._calc
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:calc() instead.
 function MathFunctionParserSDK:Calc(data)
   local EntityMod = require("entity.calc_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:resolve():list() / client:resolve():load({ id = ... })
+function MathFunctionParserSDK:resolve(data)
+  local EntityMod = require("entity.resolve_entity")
+  if data == nil then
+    if self._resolve == nil then
+      self._resolve = EntityMod.new(self, nil)
+    end
+    return self._resolve
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:resolve() instead.
 function MathFunctionParserSDK:Resolve(data)
   local EntityMod = require("entity.resolve_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:tokenize():list() / client:tokenize():load({ id = ... })
+function MathFunctionParserSDK:tokenize(data)
+  local EntityMod = require("entity.tokenize_entity")
+  if data == nil then
+    if self._tokenize == nil then
+      self._tokenize = EntityMod.new(self, nil)
+    end
+    return self._tokenize
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:tokenize() instead.
 function MathFunctionParserSDK:Tokenize(data)
   local EntityMod = require("entity.tokenize_entity")
   return EntityMod.new(self, data)

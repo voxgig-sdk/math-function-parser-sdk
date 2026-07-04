@@ -103,7 +103,7 @@ class MathFunctionParserSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class MathFunctionParserSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class MathFunctionParserSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,38 +216,71 @@ class MathFunctionParserSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Calc($data = null)
+    private $_calc = null;
+
+    // Idiomatic facade: $client->calc()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Calc() (PHP method
+    // names are case-insensitive).
+    public function calc($data = null)
     {
         require_once __DIR__ . '/entity/calc_entity.php';
+        if ($data === null) {
+            if ($this->_calc === null) {
+                $this->_calc = new CalcEntity($this, null);
+            }
+            return $this->_calc;
+        }
         return new CalcEntity($this, $data);
     }
 
 
-    public function Resolve($data = null)
+    private $_resolve = null;
+
+    // Idiomatic facade: $client->resolve()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Resolve() (PHP method
+    // names are case-insensitive).
+    public function resolve($data = null)
     {
         require_once __DIR__ . '/entity/resolve_entity.php';
+        if ($data === null) {
+            if ($this->_resolve === null) {
+                $this->_resolve = new ResolveEntity($this, null);
+            }
+            return $this->_resolve;
+        }
         return new ResolveEntity($this, $data);
     }
 
 
-    public function Tokenize($data = null)
+    private $_tokenize = null;
+
+    // Idiomatic facade: $client->tokenize()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Tokenize() (PHP method
+    // names are case-insensitive).
+    public function tokenize($data = null)
     {
         require_once __DIR__ . '/entity/tokenize_entity.php';
+        if ($data === null) {
+            if ($this->_tokenize === null) {
+                $this->_tokenize = new TokenizeEntity($this, null);
+            }
+            return $this->_tokenize;
+        }
         return new TokenizeEntity($this, $data);
     }
 

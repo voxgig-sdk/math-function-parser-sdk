@@ -43,8 +43,7 @@ class TokenizeEntityTest < Minitest::Test
     tokenize_ref01_ent = client.Tokenize(nil)
     tokenize_ref01_match = {}
 
-    tokenize_ref01_list_result, err = tokenize_ref01_ent.list(tokenize_ref01_match, nil)
-    assert_nil err
+    tokenize_ref01_list_result = tokenize_ref01_ent.list(tokenize_ref01_match, nil)
     assert tokenize_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def tokenize_basic_setup(extra)
     "MATHFUNCTIONPARSER_TEST_TOKENIZE_ENTID" => idmap,
     "MATHFUNCTIONPARSER_TEST_LIVE" => "FALSE",
     "MATHFUNCTIONPARSER_TEST_EXPLAIN" => "FALSE",
-    "MATHFUNCTIONPARSER_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def tokenize_basic_setup(extra)
   if env["MATHFUNCTIONPARSER_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["MATHFUNCTIONPARSER_APIKEY"],
       },
       extra || {},
     ])

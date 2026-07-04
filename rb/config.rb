@@ -15,9 +15,6 @@ module MathFunctionParserConfig
       },
       "options" => {
         "base" => "https://math.oglimmer.de",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

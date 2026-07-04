@@ -45,6 +45,7 @@ class TokenizeEntity
     end
   end
 
+  # @return [Tokenize, Hash] the current Tokenize data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class TokenizeEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Tokenize fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class TokenizeEntity
   
 
   
+  # List Tokenize items matching the given filter.
+  #
+  # @param reqmatch [TokenizeListMatch, Hash, nil] match filter (any subset of Tokenize fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Tokenize>, Array] the matching Tokenize items; raises MathFunctionParserError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

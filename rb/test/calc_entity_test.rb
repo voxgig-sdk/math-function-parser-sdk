@@ -43,8 +43,7 @@ class CalcEntityTest < Minitest::Test
     calc_ref01_ent = client.Calc(nil)
     calc_ref01_match = {}
 
-    calc_ref01_list_result, err = calc_ref01_ent.list(calc_ref01_match, nil)
-    assert_nil err
+    calc_ref01_list_result = calc_ref01_ent.list(calc_ref01_match, nil)
     assert calc_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def calc_basic_setup(extra)
     "MATHFUNCTIONPARSER_TEST_CALC_ENTID" => idmap,
     "MATHFUNCTIONPARSER_TEST_LIVE" => "FALSE",
     "MATHFUNCTIONPARSER_TEST_EXPLAIN" => "FALSE",
-    "MATHFUNCTIONPARSER_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def calc_basic_setup(extra)
   if env["MATHFUNCTIONPARSER_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["MATHFUNCTIONPARSER_APIKEY"],
       },
       extra || {},
     ])

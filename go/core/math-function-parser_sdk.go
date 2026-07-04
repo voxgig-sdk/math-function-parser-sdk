@@ -245,16 +245,25 @@ func (sdk *MathFunctionParserSDK) Direct(fetchargs map[string]any) (map[string]a
 }
 
 
+// Calc returns a Calc entity bound to this client.
+// Idiomatic usage: client.Calc(nil).List(nil, nil) or
+// client.Calc(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MathFunctionParserSDK) Calc(data map[string]any) MathFunctionParserEntity {
 	return NewCalcEntityFunc(sdk, data)
 }
 
 
+// Resolve returns a Resolve entity bound to this client.
+// Idiomatic usage: client.Resolve(nil).List(nil, nil) or
+// client.Resolve(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MathFunctionParserSDK) Resolve(data map[string]any) MathFunctionParserEntity {
 	return NewResolveEntityFunc(sdk, data)
 }
 
 
+// Tokenize returns a Tokenize entity bound to this client.
+// Idiomatic usage: client.Tokenize(nil).List(nil, nil) or
+// client.Tokenize(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MathFunctionParserSDK) Tokenize(data map[string]any) MathFunctionParserEntity {
 	return NewTokenizeEntityFunc(sdk, data)
 }

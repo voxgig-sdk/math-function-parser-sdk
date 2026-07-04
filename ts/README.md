@@ -9,9 +9,12 @@ The TypeScript SDK for the MathFunctionParser API — a type-safe, entity-orient
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/math-function-parser
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/math-function-parser-sdk/releases](https://github.com/voxgig-sdk/math-function-parser-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MathFunctionParserSDK } from 'math-function-parser'
+import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser'
 
-const client = new MathFunctionParserSDK({
-  apikey: process.env.MATH-FUNCTION-PARSER_APIKEY,
-})
+const client = new MathFunctionParserSDK()
 ```
 
 ### 2. List calcs
 
 ```ts
-const result = await client.Calc().list()
+const result = await client.calc.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MathFunctionParserSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.calc.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new MathFunctionParserSDK({ apikey: '...' })
+const client = new MathFunctionParserSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.calc
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new MathFunctionParserSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -135,8 +135,7 @@ const client = new MathFunctionParserSDK({
 Create a `.env.local` file at the project root:
 
 ```
-MATH-FUNCTION-PARSER_TEST_LIVE=TRUE
-MATH-FUNCTION-PARSER_APIKEY=<your-key>
+MATH_FUNCTION_PARSER_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new MathFunctionParserSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new MathFunctionParserSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -291,7 +288,7 @@ API path: `/v1/ast`
 
 ### Calc
 
-Create an instance: `const calc = client.Calc()`
+Create an instance: `const calc = client.calc`
 
 #### Operations
 
@@ -309,13 +306,13 @@ Create an instance: `const calc = client.Calc()`
 #### Example: List
 
 ```ts
-const calcs = await client.Calc().list()
+const calcs = await client.calc.list()
 ```
 
 
 ### Resolve
 
-Create an instance: `const resolve = client.Resolve()`
+Create an instance: `const resolve = client.resolve`
 
 #### Operations
 
@@ -326,13 +323,13 @@ Create an instance: `const resolve = client.Resolve()`
 #### Example: Load
 
 ```ts
-const resolve = await client.Resolve().load({ id: 'resolve_id' })
+const resolve = await client.resolve.load({ id: 'resolve_id' })
 ```
 
 
 ### Tokenize
 
-Create an instance: `const tokenize = client.Tokenize()`
+Create an instance: `const tokenize = client.tokenize`
 
 #### Operations
 
@@ -350,7 +347,7 @@ Create an instance: `const tokenize = client.Tokenize()`
 #### Example: List
 
 ```ts
-const tokenizes = await client.Tokenize().list()
+const tokenizes = await client.tokenize.list()
 ```
 
 
@@ -411,7 +408,7 @@ math-function-parser/
 Import the SDK from the package root:
 
 ```ts
-import { MathFunctionParserSDK } from 'math-function-parser'
+import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser'
 ```
 
 ### Entity state
@@ -421,11 +418,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const calc = client.calc
+await calc.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// calc.data() now returns the loaded calc data
+// calc.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

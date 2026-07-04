@@ -9,12 +9,9 @@ The Lua SDK for the MathFunctionParser API — an entity-oriented client using L
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-math-function-parser
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/math-function-parser-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("math-function-parser_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("MATH-FUNCTION-PARSER_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List calcs
 
 ```lua
-local result, err = client:Calc():list()
+local result, err = client:calc():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -93,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:MathFunctionParser():load({ id = "test01" })
+local result, err = client:calc():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -126,8 +121,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-MATH-FUNCTION-PARSER_TEST_LIVE=TRUE
-MATH-FUNCTION-PARSER_APIKEY=<your-key>
+MATH_FUNCTION_PARSER_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -150,7 +144,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -250,7 +243,7 @@ API path: `/v1/ast`
 
 ### Calc
 
-Create an instance: `const calc = client.Calc()`
+Create an instance: `const calc = client.calc`
 
 #### Operations
 
@@ -268,13 +261,13 @@ Create an instance: `const calc = client.Calc()`
 #### Example: List
 
 ```ts
-const calcs = await client.Calc().list()
+const calcs = await client.calc.list()
 ```
 
 
 ### Resolve
 
-Create an instance: `const resolve = client.Resolve()`
+Create an instance: `const resolve = client.resolve`
 
 #### Operations
 
@@ -285,13 +278,13 @@ Create an instance: `const resolve = client.Resolve()`
 #### Example: Load
 
 ```ts
-const resolve = await client.Resolve().load({ id: 'resolve_id' })
+const resolve = await client.resolve.load({ id: 'resolve_id' })
 ```
 
 
 ### Tokenize
 
-Create an instance: `const tokenize = client.Tokenize()`
+Create an instance: `const tokenize = client.tokenize`
 
 #### Operations
 
@@ -309,7 +302,7 @@ Create an instance: `const tokenize = client.Tokenize()`
 #### Example: List
 
 ```ts
-const tokenizes = await client.Tokenize().list()
+const tokenizes = await client.tokenize.list()
 ```
 
 
@@ -384,11 +377,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local calc = client:calc()
+calc:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- calc:data_get() now returns the loaded calc data
+-- calc:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

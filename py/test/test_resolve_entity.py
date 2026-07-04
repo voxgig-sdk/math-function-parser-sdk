@@ -49,8 +49,7 @@ class TestResolveEntity:
         # LOAD
         resolve_ref01_ent = client.Resolve(None)
         resolve_ref01_match_dt0 = {}
-        resolve_ref01_data_dt0_loaded, err = resolve_ref01_ent.load(resolve_ref01_match_dt0, None)
-        assert err is None
+        resolve_ref01_data_dt0_loaded = resolve_ref01_ent.load(resolve_ref01_match_dt0, None)
         assert resolve_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _resolve_basic_setup(extra):
         "MATHFUNCTIONPARSER_TEST_RESOLVE_ENTID": idmap,
         "MATHFUNCTIONPARSER_TEST_LIVE": "FALSE",
         "MATHFUNCTIONPARSER_TEST_EXPLAIN": "FALSE",
-        "MATHFUNCTIONPARSER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _resolve_basic_setup(extra):
     if env.get("MATHFUNCTIONPARSER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("MATHFUNCTIONPARSER_APIKEY"),
             },
             extra or {},
         ])

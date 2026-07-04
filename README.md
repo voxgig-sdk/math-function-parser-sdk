@@ -10,26 +10,24 @@ This is an unofficial SDK for the Mathematical Function Parser Service public AP
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/math-function-parser` | `npm install @voxgig-sdk/math-function-parser` |
-| Python | `voxgig-sdk-math-function-parser` | `pip install voxgig-sdk-math-function-parser` |
-| PHP | `voxgig-sdk/math-function-parser` | `composer require voxgig-sdk/math-function-parser` |
-| Golang | `github.com/voxgig-sdk/math-function-parser-sdk/go` | `go get github.com/voxgig-sdk/math-function-parser-sdk/go` |
-| Ruby | `voxgig-sdk-math-function-parser` | `gem install voxgig-sdk-math-function-parser` |
-| Lua | `voxgig-sdk-math-function-parser` | `luarocks install voxgig-sdk-math-function-parser` |
+| TypeScript | `@voxgig-sdk/math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
+| Python | `voxgig-sdk-math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
+| PHP | `voxgig-sdk/math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
+| Golang | `github.com/voxgig-sdk/math-function-parser-sdk/go` | `go get github.com/voxgig-sdk/math-function-parser-sdk/go@latest` |
+| Ruby | `voxgig-sdk-math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
+| Lua | `voxgig-sdk-math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
 
 ## Quickstart
 
 ### TypeScript
 
 ```ts
-import { MathFunctionParserSDK } from 'math-function-parser'
+import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser'
 
-const client = new MathFunctionParserSDK({
-  apikey: process.env.MATH-FUNCTION-PARSER_APIKEY,
-})
+const client = new MathFunctionParserSDK()
 
 // List all calcs
-const calcs = await client.Calc().list()
+const calcs = await client.calc.list()
 console.log(calcs.data)
 ```
 
@@ -71,9 +69,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Calc** |  | `/v1/calc` |
-| **Resolve** |  | `/v1/resolve` |
-| **Tokenize** |  | `/v1/ast` |
+| **Calc** | The Calc entity (list). | `/v1/calc` |
+| **Resolve** | The Resolve entity (load). | `/v1/resolve` |
+| **Tokenize** | The Tokenize entity (list). | `/v1/ast` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -83,15 +81,12 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
-import os
 from mathfunctionparser_sdk import MathFunctionParserSDK
 
-client = MathFunctionParserSDK({
-    "apikey": os.environ.get("MATH-FUNCTION-PARSER_APIKEY"),
-})
+client = MathFunctionParserSDK()
 
 # List all calcs
-calcs, err = client.Calc().list()
+calcs = client.calc.list()
 print(calcs)
 ```
 
@@ -101,12 +96,10 @@ print(calcs)
 <?php
 require_once 'mathfunctionparser_sdk.php';
 
-$client = new MathFunctionParserSDK([
-    "apikey" => getenv("MATH-FUNCTION-PARSER_APIKEY"),
-]);
+$client = new MathFunctionParserSDK();
 
-// List all calcs
-[$calcs, $err] = $client->Calc()->list();
+// List all calcs (throws on error)
+$calcs = $client->calc()->list();
 print_r($calcs);
 ```
 
@@ -115,9 +108,7 @@ print_r($calcs);
 ```go
 import sdk "github.com/voxgig-sdk/math-function-parser-sdk/go"
 
-client := sdk.NewMathFunctionParserSDK(map[string]any{
-    "apikey": os.Getenv("MATH-FUNCTION-PARSER_APIKEY"),
-})
+client := sdk.New()
 
 // List all calcs
 calcs, err := client.Calc(nil).List(nil, nil)
@@ -129,12 +120,10 @@ fmt.Println(calcs)
 ```ruby
 require_relative "MathFunctionParser_sdk"
 
-client = MathFunctionParserSDK.new({
-  "apikey" => ENV["MATH-FUNCTION-PARSER_APIKEY"],
-})
+client = MathFunctionParserSDK.new
 
 # List all calcs
-calcs, err = client.Calc().list
+calcs = client.calc.list
 puts calcs
 ```
 
@@ -143,12 +132,10 @@ puts calcs
 ```lua
 local sdk = require("math-function-parser_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("MATH-FUNCTION-PARSER_APIKEY"),
-})
+local client = sdk.new()
 
 -- List all calcs
-local calcs, err = client:Calc():list()
+local calcs, err = client:calc():list()
 print(calcs)
 ```
 
@@ -161,7 +148,7 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = MathFunctionParserSDK.test()
-const result = await client.Calc().load({ id: 'test01' })
+const result = await client.calc.load({ id: 'test01' })
 // result.ok === true, result.data contains mock data
 ```
 
@@ -169,14 +156,14 @@ const result = await client.Calc().load({ id: 'test01' })
 
 ```python
 client = MathFunctionParserSDK.test()
-result, err = client.Calc().load({"id": "test01"})
+result = client.calc.load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
 $client = MathFunctionParserSDK::test();
-[$result, $err] = $client->Calc()->load(["id" => "test01"]);
+$result = $client->calc()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -192,14 +179,14 @@ result, err := client.Calc(nil).Load(
 
 ```ruby
 client = MathFunctionParserSDK.test
-result, err = client.Calc().load({ "id" => "test01" })
+result = client.calc.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Calc():load({ id = "test01" })
+local result, err = client:calc():load({ id = "test01" })
 ```
 
 ## How it works
@@ -252,7 +239,7 @@ console.log(result.data)
 
 **Python:**
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
@@ -261,7 +248,7 @@ result, err = client.direct({
 
 **PHP:**
 ```php
-[$result, $err] = $client->direct([
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
@@ -279,7 +266,7 @@ result, err := client.Direct(map[string]any{
 
 **Ruby:**
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },

@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -134,7 +133,7 @@ Alias for `MathFunctionParserSDK.test()`.
 ## CalcEntity
 
 ```ts
-const calc = client.Calc()
+const calc = client.calc
 ```
 
 ### Fields
@@ -151,7 +150,7 @@ const calc = client.Calc()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Calc().list()
+const results = await client.calc.list()
 ```
 
 ### Common Methods
@@ -185,7 +184,7 @@ Return a copy of the entity options.
 ## ResolveEntity
 
 ```ts
-const resolve = client.Resolve()
+const resolve = client.resolve
 ```
 
 ### Operations
@@ -195,7 +194,7 @@ const resolve = client.Resolve()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Resolve().load({ id: 'resolve_id' })
+const result = await client.resolve.load({ id: 'resolve_id' })
 ```
 
 ### Common Methods
@@ -229,7 +228,7 @@ Return a copy of the entity options.
 ## TokenizeEntity
 
 ```ts
-const tokenize = client.Tokenize()
+const tokenize = client.tokenize
 ```
 
 ### Fields
@@ -246,7 +245,7 @@ const tokenize = client.Tokenize()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Tokenize().list()
+const results = await client.tokenize.list()
 ```
 
 ### Common Methods

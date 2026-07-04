@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'MathFunctionParser_types'
+
 
 class MathFunctionParserSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class MathFunctionParserSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class MathFunctionParserSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue MathFunctionParserError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = MathFunctionParserHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class MathFunctionParserSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,28 +198,49 @@ class MathFunctionParserSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.calc.list / client.calc.load({ "id" => ... })
+  def calc
+    require_relative 'entity/calc_entity'
+    @calc ||= CalcEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.calc instead.
   def Calc(data = nil)
     require_relative 'entity/calc_entity'
     CalcEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.resolve.list / client.resolve.load({ "id" => ... })
+  def resolve
+    require_relative 'entity/resolve_entity'
+    @resolve ||= ResolveEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.resolve instead.
   def Resolve(data = nil)
     require_relative 'entity/resolve_entity'
     ResolveEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.tokenize.list / client.tokenize.load({ "id" => ... })
+  def tokenize
+    require_relative 'entity/tokenize_entity'
+    @tokenize ||= TokenizeEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.tokenize instead.
   def Tokenize(data = nil)
     require_relative 'entity/tokenize_entity'
     TokenizeEntity.new(self, data)

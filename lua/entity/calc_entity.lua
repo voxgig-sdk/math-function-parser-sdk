@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch CalcListMatch
+---@param ctrl? table
+---@return Calc[]
+---@return string? err
 function CalcEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

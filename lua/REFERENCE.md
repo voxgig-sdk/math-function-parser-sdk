@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -92,7 +91,7 @@ same parameters as `direct()`.
 ## CalcEntity
 
 ```lua
-local calc = client:Calc(nil)
+local calc = client:calc(nil)
 ```
 
 ### Fields
@@ -109,7 +108,7 @@ local calc = client:Calc(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Calc():list()
+local results, err = client:calc():list()
 ```
 
 ### Common Methods
@@ -145,7 +144,7 @@ Return the entity name.
 ## ResolveEntity
 
 ```lua
-local resolve = client:Resolve(nil)
+local resolve = client:resolve(nil)
 ```
 
 ### Operations
@@ -155,7 +154,7 @@ local resolve = client:Resolve(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Resolve():load({ id = "resolve_id" })
+local result, err = client:resolve():load({ id = "resolve_id" })
 ```
 
 ### Common Methods
@@ -191,7 +190,7 @@ Return the entity name.
 ## TokenizeEntity
 
 ```lua
-local tokenize = client:Tokenize(nil)
+local tokenize = client:tokenize(nil)
 ```
 
 ### Fields
@@ -208,7 +207,7 @@ local tokenize = client:Tokenize(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Tokenize():list()
+local results, err = client:tokenize():list()
 ```
 
 ### Common Methods

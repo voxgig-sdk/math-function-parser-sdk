@@ -49,8 +49,7 @@ class ResolveEntityTest extends TestCase
         // LOAD
         $resolve_ref01_ent = $client->Resolve(null);
         $resolve_ref01_match_dt0 = [];
-        [$resolve_ref01_data_dt0_loaded, $err] = $resolve_ref01_ent->load($resolve_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $resolve_ref01_data_dt0_loaded = $resolve_ref01_ent->load($resolve_ref01_match_dt0, null);
         $this->assertNotNull($resolve_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function resolve_basic_setup($extra)
         "MATHFUNCTIONPARSER_TEST_RESOLVE_ENTID" => $idmap,
         "MATHFUNCTIONPARSER_TEST_LIVE" => "FALSE",
         "MATHFUNCTIONPARSER_TEST_EXPLAIN" => "FALSE",
-        "MATHFUNCTIONPARSER_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function resolve_basic_setup($extra)
     if ($env["MATHFUNCTIONPARSER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["MATHFUNCTIONPARSER_APIKEY"],
             ],
             $extra ?? [],
         ]);
