@@ -31,14 +31,16 @@ from mathfunctionparser_sdk import MathFunctionParserSDK
 client = MathFunctionParserSDK()
 ```
 
-### 2. List calcs
+### 2. List calc records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.calc.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    calcs = client.Calc().list({})
+    for calc in calcs:
+        print(calc)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = MathFunctionParserSDK.test()
 
-result = client.calc.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+calc = client.Calc().load({"id": "test01"})
+# calc contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -243,7 +246,7 @@ API path: `/v1/ast`
 
 ### Calc
 
-Create an instance: `const calc = client.calc`
+Create an instance: `calc = client.Calc()`
 
 #### Operations
 
@@ -260,14 +263,14 @@ Create an instance: `const calc = client.calc`
 
 #### Example: List
 
-```ts
-const calcs = await client.calc.list()
+```python
+calcs = client.Calc().list({})
 ```
 
 
 ### Resolve
 
-Create an instance: `const resolve = client.resolve`
+Create an instance: `resolve = client.Resolve()`
 
 #### Operations
 
@@ -277,14 +280,14 @@ Create an instance: `const resolve = client.resolve`
 
 #### Example: Load
 
-```ts
-const resolve = await client.resolve.load({ id: 'resolve_id' })
+```python
+resolve = client.Resolve().load({"id": "resolve_id"})
 ```
 
 
 ### Tokenize
 
-Create an instance: `const tokenize = client.tokenize`
+Create an instance: `tokenize = client.Tokenize()`
 
 #### Operations
 
@@ -301,8 +304,8 @@ Create an instance: `const tokenize = client.tokenize`
 
 #### Example: List
 
-```ts
-const tokenizes = await client.tokenize.list()
+```python
+tokenizes = client.Tokenize().list({})
 ```
 
 
@@ -376,7 +379,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-calc = client.calc
+calc = client.Calc()
 calc.load({"id": "example_id"})
 
 # calc.data_get() now returns the loaded calc data

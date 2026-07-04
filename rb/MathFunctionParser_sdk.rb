@@ -208,39 +208,21 @@ class MathFunctionParserSDK
   end
 
 
-  # Idiomatic facade: client.calc.list / client.calc.load({ "id" => ... })
-  def calc
-    require_relative 'entity/calc_entity'
-    @calc ||= CalcEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.calc instead.
+  # Canonical facade: client.Calc.list / client.Calc.load({ "id" => ... })
   def Calc(data = nil)
     require_relative 'entity/calc_entity'
     CalcEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.resolve.list / client.resolve.load({ "id" => ... })
-  def resolve
-    require_relative 'entity/resolve_entity'
-    @resolve ||= ResolveEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.resolve instead.
+  # Canonical facade: client.Resolve.list / client.Resolve.load({ "id" => ... })
   def Resolve(data = nil)
     require_relative 'entity/resolve_entity'
     ResolveEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.tokenize.list / client.tokenize.load({ "id" => ... })
-  def tokenize
-    require_relative 'entity/tokenize_entity'
-    @tokenize ||= TokenizeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.tokenize instead.
+  # Canonical facade: client.Tokenize.list / client.Tokenize.load({ "id" => ... })
   def Tokenize(data = nil)
     require_relative 'entity/tokenize_entity'
     TokenizeEntity.new(self, data)

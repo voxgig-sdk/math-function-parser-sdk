@@ -31,17 +31,17 @@ local sdk = require("math-function-parser_sdk")
 local client = sdk.new()
 ```
 
-### 2. List calcs
+### 2. List calc records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:calc():list()
+local calcs, err = client:Calc():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(calcs) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:calc():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Calc():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -191,17 +191,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local calc, err = client:Calc():load({ id = "example_id" })
+    if err then error(err) end
+    -- calc is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -243,7 +248,7 @@ API path: `/v1/ast`
 
 ### Calc
 
-Create an instance: `const calc = client.calc`
+Create an instance: `local calc = client:Calc(nil)`
 
 #### Operations
 
@@ -260,14 +265,14 @@ Create an instance: `const calc = client.calc`
 
 #### Example: List
 
-```ts
-const calcs = await client.calc.list()
+```lua
+local calcs, err = client:Calc():list()
 ```
 
 
 ### Resolve
 
-Create an instance: `const resolve = client.resolve`
+Create an instance: `local resolve = client:Resolve(nil)`
 
 #### Operations
 
@@ -277,14 +282,14 @@ Create an instance: `const resolve = client.resolve`
 
 #### Example: Load
 
-```ts
-const resolve = await client.resolve.load({ id: 'resolve_id' })
+```lua
+local resolve, err = client:Resolve():load({ id = "resolve_id" })
 ```
 
 
 ### Tokenize
 
-Create an instance: `const tokenize = client.tokenize`
+Create an instance: `local tokenize = client:Tokenize(nil)`
 
 #### Operations
 
@@ -301,8 +306,8 @@ Create an instance: `const tokenize = client.tokenize`
 
 #### Example: List
 
-```ts
-const tokenizes = await client.tokenize.list()
+```lua
+local tokenizes, err = client:Tokenize():list()
 ```
 
 
@@ -377,7 +382,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local calc = client:calc()
+local calc = client:Calc()
 calc:load({ id = "example_id" })
 
 -- calc:data_get() now returns the loaded calc data

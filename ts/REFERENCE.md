@@ -133,7 +133,7 @@ Alias for `MathFunctionParserSDK.test()`.
 ## CalcEntity
 
 ```ts
-const calc = client.calc
+const calc = client.Calc()
 ```
 
 ### Fields
@@ -150,7 +150,7 @@ const calc = client.calc
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.calc.list()
+const results = await client.Calc().list()
 ```
 
 ### Common Methods
@@ -184,7 +184,7 @@ Return a copy of the entity options.
 ## ResolveEntity
 
 ```ts
-const resolve = client.resolve
+const resolve = client.Resolve()
 ```
 
 ### Operations
@@ -194,7 +194,7 @@ const resolve = client.resolve
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.resolve.load({ id: 'resolve_id' })
+const result = await client.Resolve().load({ id: 'resolve_id' })
 ```
 
 ### Common Methods
@@ -228,7 +228,7 @@ Return a copy of the entity options.
 ## TokenizeEntity
 
 ```ts
-const tokenize = client.tokenize
+const tokenize = client.Tokenize()
 ```
 
 ### Fields
@@ -245,7 +245,7 @@ const tokenize = client.tokenize
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.tokenize.list()
+const results = await client.Tokenize().list()
 ```
 
 ### Common Methods

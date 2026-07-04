@@ -26,9 +26,11 @@ import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser'
 
 const client = new MathFunctionParserSDK()
 
-// List all calcs
-const calcs = await client.calc.list()
-console.log(calcs.data)
+// List all calcs (returns Calc[])
+const calcs = await client.Calc().list()
+for (const calc of calcs) {
+  console.log(calc)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -85,9 +87,10 @@ from mathfunctionparser_sdk import MathFunctionParserSDK
 
 client = MathFunctionParserSDK()
 
-# List all calcs
-calcs = client.calc.list()
-print(calcs)
+# List all calcs (returns a list, raises on error)
+calcs = client.Calc().list({})
+for calc in calcs:
+    print(calc)
 ```
 
 ### PHP
@@ -98,8 +101,8 @@ require_once 'mathfunctionparser_sdk.php';
 
 $client = new MathFunctionParserSDK();
 
-// List all calcs (throws on error)
-$calcs = $client->calc()->list();
+// List all calcs (returns an array; throws on error)
+$calcs = $client->Calc()->list();
 print_r($calcs);
 ```
 
@@ -122,8 +125,8 @@ require_relative "MathFunctionParser_sdk"
 
 client = MathFunctionParserSDK.new
 
-# List all calcs
-calcs = client.calc.list
+# List all calcs (returns an Array; raises on error)
+calcs = client.Calc.list
 puts calcs
 ```
 
@@ -135,7 +138,7 @@ local sdk = require("math-function-parser_sdk")
 local client = sdk.new()
 
 -- List all calcs
-local calcs, err = client:calc():list()
+local calcs, err = client:Calc():list()
 print(calcs)
 ```
 
@@ -148,22 +151,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = MathFunctionParserSDK.test()
-const result = await client.calc.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const calc = await client.Calc().load({ id: 'test01' })
+// calc is a bare Calc populated with mock data
+console.log(calc)
 ```
 
 ### Python
 
 ```python
 client = MathFunctionParserSDK.test()
-result = client.calc.load({"id": "test01"})
+calc = client.Calc().load({"id": "test01"})
+print(calc)
 ```
 
 ### PHP
 
 ```php
-$client = MathFunctionParserSDK::test();
-$result = $client->calc()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = MathFunctionParserSDK::test([
+    "entity" => ["calc" => ["test01" => ["id" => "test01"]]],
+]);
+$calc = $client->Calc()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -178,15 +186,18 @@ result, err := client.Calc(nil).Load(
 ### Ruby
 
 ```ruby
-client = MathFunctionParserSDK.test
-result = client.calc.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = MathFunctionParserSDK.test({
+  "entity" => { "calc" => { "test01" => { "id" => "test01" } } },
+})
+calc = client.Calc.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:calc():load({ id = "test01" })
+local result, err = client:Calc():load({ id = "test01" })
 ```
 
 ## How it works
@@ -234,6 +245,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

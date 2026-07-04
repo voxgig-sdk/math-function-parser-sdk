@@ -28,16 +28,14 @@ require_relative "MathFunctionParser_sdk"
 client = MathFunctionParserSDK.new
 ```
 
-### 2. List calcs
+### 2. List calc records
 
 ```ruby
 begin
-  result = client.calc.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Calc records — iterate directly.
+  calcs = client.Calc.list
+  calcs.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = MathFunctionParserSDK.test
+client = MathFunctionParserSDK.test({
+  "entity" => { "calc" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.calc.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+calc = client.Calc.load({ "id" => "test01" })
+puts calc
 ```
 
 ### Use a custom fetch function
@@ -246,7 +248,7 @@ API path: `/v1/ast`
 
 ### Calc
 
-Create an instance: `const calc = client.calc`
+Create an instance: `calc = client.Calc`
 
 #### Operations
 
@@ -263,14 +265,15 @@ Create an instance: `const calc = client.calc`
 
 #### Example: List
 
-```ts
-const calcs = await client.calc.list()
+```ruby
+# list returns an Array of Calc records (raises on error).
+calcs = client.Calc.list
 ```
 
 
 ### Resolve
 
-Create an instance: `const resolve = client.resolve`
+Create an instance: `resolve = client.Resolve`
 
 #### Operations
 
@@ -280,14 +283,15 @@ Create an instance: `const resolve = client.resolve`
 
 #### Example: Load
 
-```ts
-const resolve = await client.resolve.load({ id: 'resolve_id' })
+```ruby
+# load returns the bare Resolve record (raises on error).
+resolve = client.Resolve.load({ "id" => "resolve_id" })
 ```
 
 
 ### Tokenize
 
-Create an instance: `const tokenize = client.tokenize`
+Create an instance: `tokenize = client.Tokenize`
 
 #### Operations
 
@@ -304,8 +308,9 @@ Create an instance: `const tokenize = client.tokenize`
 
 #### Example: List
 
-```ts
-const tokenizes = await client.tokenize.list()
+```ruby
+# list returns an Array of Tokenize records (raises on error).
+tokenizes = client.Tokenize.list
 ```
 
 
@@ -380,7 +385,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-calc = client.calc
+calc = client.Calc
 calc.load({ "id" => "example_id" })
 
 # calc.data_get now returns the loaded calc data

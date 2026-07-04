@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:calc():list() / client:calc():load({ id = ... })
-function MathFunctionParserSDK:calc(data)
+-- Idiomatic facade: client:Calc():list() / client:Calc():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MathFunctionParserSDK:Calc(data)
   local EntityMod = require("entity.calc_entity")
   if data == nil then
     if self._calc == nil then
@@ -256,15 +257,10 @@ function MathFunctionParserSDK:calc(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:calc() instead.
-function MathFunctionParserSDK:Calc(data)
-  local EntityMod = require("entity.calc_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:resolve():list() / client:resolve():load({ id = ... })
-function MathFunctionParserSDK:resolve(data)
+-- Idiomatic facade: client:Resolve():list() / client:Resolve():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MathFunctionParserSDK:Resolve(data)
   local EntityMod = require("entity.resolve_entity")
   if data == nil then
     if self._resolve == nil then
@@ -275,15 +271,10 @@ function MathFunctionParserSDK:resolve(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:resolve() instead.
-function MathFunctionParserSDK:Resolve(data)
-  local EntityMod = require("entity.resolve_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:tokenize():list() / client:tokenize():load({ id = ... })
-function MathFunctionParserSDK:tokenize(data)
+-- Idiomatic facade: client:Tokenize():list() / client:Tokenize():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MathFunctionParserSDK:Tokenize(data)
   local EntityMod = require("entity.tokenize_entity")
   if data == nil then
     if self._tokenize == nil then
@@ -291,12 +282,6 @@ function MathFunctionParserSDK:tokenize(data)
     end
     return self._tokenize
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:tokenize() instead.
-function MathFunctionParserSDK:Tokenize(data)
-  local EntityMod = require("entity.tokenize_entity")
   return EntityMod.new(self, data)
 end
 

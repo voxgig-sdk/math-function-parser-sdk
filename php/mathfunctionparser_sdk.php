@@ -233,10 +233,10 @@ class MathFunctionParserSDK
 
     private $_calc = null;
 
-    // Idiomatic facade: $client->calc()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Calc() (PHP method
-    // names are case-insensitive).
-    public function calc($data = null)
+    // Canonical facade: $client->Calc()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->calc()
+    // resolves here too.
+    public function Calc($data = null)
     {
         require_once __DIR__ . '/entity/calc_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class MathFunctionParserSDK
 
     private $_resolve = null;
 
-    // Idiomatic facade: $client->resolve()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Resolve() (PHP method
-    // names are case-insensitive).
-    public function resolve($data = null)
+    // Canonical facade: $client->Resolve()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->resolve()
+    // resolves here too.
+    public function Resolve($data = null)
     {
         require_once __DIR__ . '/entity/resolve_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class MathFunctionParserSDK
 
     private $_tokenize = null;
 
-    // Idiomatic facade: $client->tokenize()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Tokenize() (PHP method
-    // names are case-insensitive).
-    public function tokenize($data = null)
+    // Canonical facade: $client->Tokenize()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->tokenize()
+    // resolves here too.
+    public function Tokenize($data = null)
     {
         require_once __DIR__ . '/entity/tokenize_entity.php';
         if ($data === null) {

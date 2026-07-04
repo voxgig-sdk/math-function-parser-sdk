@@ -28,15 +28,15 @@ import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser'
 const client = new MathFunctionParserSDK()
 ```
 
-### 2. List calcs
+### 2. List calc records
+
+`list()` resolves to an array of Calc objects — iterate it directly:
 
 ```ts
-const result = await client.calc.list()
+const calcs = await client.Calc().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const calc of calcs) {
+  console.log(calc)
 }
 ```
 
@@ -54,6 +54,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -82,9 +85,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MathFunctionParserSDK.test()
 
-const result = await client.calc.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const calc = await client.Calc().load({ id: 'test01' })
+// calc is a bare entity populated with mock response data
+console.log(calc)
 ```
 
 You can also use the instance method:
@@ -99,7 +102,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.calc
+const entity = client.Calc()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -196,29 +199,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): MathFunctionParserSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -288,7 +292,7 @@ API path: `/v1/ast`
 
 ### Calc
 
-Create an instance: `const calc = client.calc`
+Create an instance: `const calc = client.Calc()`
 
 #### Operations
 
@@ -306,13 +310,13 @@ Create an instance: `const calc = client.calc`
 #### Example: List
 
 ```ts
-const calcs = await client.calc.list()
+const calcs = await client.Calc().list()
 ```
 
 
 ### Resolve
 
-Create an instance: `const resolve = client.resolve`
+Create an instance: `const resolve = client.Resolve()`
 
 #### Operations
 
@@ -323,13 +327,13 @@ Create an instance: `const resolve = client.resolve`
 #### Example: Load
 
 ```ts
-const resolve = await client.resolve.load({ id: 'resolve_id' })
+const resolve = await client.Resolve().load({ id: 'resolve_id' })
 ```
 
 
 ### Tokenize
 
-Create an instance: `const tokenize = client.tokenize`
+Create an instance: `const tokenize = client.Tokenize()`
 
 #### Operations
 
@@ -347,7 +351,7 @@ Create an instance: `const tokenize = client.tokenize`
 #### Example: List
 
 ```ts
-const tokenizes = await client.tokenize.list()
+const tokenizes = await client.Tokenize().list()
 ```
 
 
@@ -418,7 +422,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const calc = client.calc
+const calc = client.Calc()
 await calc.load({ id: "example_id" })
 
 // calc.data() now returns the loaded calc data

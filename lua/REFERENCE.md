@@ -91,7 +91,7 @@ same parameters as `direct()`.
 ## CalcEntity
 
 ```lua
-local calc = client:calc(nil)
+local calc = client:Calc(nil)
 ```
 
 ### Fields
@@ -108,7 +108,7 @@ local calc = client:calc(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:calc():list()
+local results, err = client:Calc():list()
 ```
 
 ### Common Methods
@@ -144,7 +144,7 @@ Return the entity name.
 ## ResolveEntity
 
 ```lua
-local resolve = client:resolve(nil)
+local resolve = client:Resolve(nil)
 ```
 
 ### Operations
@@ -154,7 +154,7 @@ local resolve = client:resolve(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:resolve():load({ id = "resolve_id" })
+local result, err = client:Resolve():load({ id = "resolve_id" })
 ```
 
 ### Common Methods
@@ -190,7 +190,7 @@ Return the entity name.
 ## TokenizeEntity
 
 ```lua
-local tokenize = client:tokenize(nil)
+local tokenize = client:Tokenize(nil)
 ```
 
 ### Fields
@@ -207,7 +207,7 @@ local tokenize = client:tokenize(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:tokenize():list()
+local results, err = client:Tokenize():list()
 ```
 
 ### Common Methods

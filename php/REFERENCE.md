@@ -93,7 +93,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## CalcEntity
 
 ```php
-$calc = $client->calc();
+$calc = $client->Calc();
 ```
 
 ### Fields
@@ -110,7 +110,7 @@ $calc = $client->calc();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->calc()->list([]);
+$results = $client->Calc()->list([]);
 ```
 
 ### Common Methods
@@ -146,7 +146,7 @@ Return the entity name.
 ## ResolveEntity
 
 ```php
-$resolve = $client->resolve();
+$resolve = $client->Resolve();
 ```
 
 ### Operations
@@ -156,7 +156,7 @@ $resolve = $client->resolve();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->resolve()->load(["id" => "resolve_id"]);
+$result = $client->Resolve()->load(["id" => "resolve_id"]);
 ```
 
 ### Common Methods
@@ -192,7 +192,7 @@ Return the entity name.
 ## TokenizeEntity
 
 ```php
-$tokenize = $client->tokenize();
+$tokenize = $client->Tokenize();
 ```
 
 ### Fields
@@ -209,7 +209,7 @@ $tokenize = $client->tokenize();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->tokenize()->list([]);
+$results = $client->Tokenize()->list([]);
 ```
 
 ### Common Methods

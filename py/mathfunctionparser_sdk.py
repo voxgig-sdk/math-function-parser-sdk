@@ -220,57 +220,27 @@ class MathFunctionParserSDK:
         }
 
 
-    @property
-    def calc(self):
-        """Idiomatic facade: client.calc.list() / client.calc.load({"id": ...})."""
-        from entity.calc_entity import CalcEntity
-        cached = getattr(self, "_calc", None)
-        if cached is None:
-            cached = CalcEntity(self, None)
-            self._calc = cached
-        return cached
-
-    def Calc(self, data=None):
-        # Deprecated: use client.calc instead.
+    def Calc(self, data=None) -> "CalcEntity":
+        """Entity factory: client.Calc().list({}) / client.Calc().load({"id": ...})."""
         from entity.calc_entity import CalcEntity
         return CalcEntity(self, data)
 
 
-    @property
-    def resolve(self):
-        """Idiomatic facade: client.resolve.list() / client.resolve.load({"id": ...})."""
-        from entity.resolve_entity import ResolveEntity
-        cached = getattr(self, "_resolve", None)
-        if cached is None:
-            cached = ResolveEntity(self, None)
-            self._resolve = cached
-        return cached
-
-    def Resolve(self, data=None):
-        # Deprecated: use client.resolve instead.
+    def Resolve(self, data=None) -> "ResolveEntity":
+        """Entity factory: client.Resolve().list({}) / client.Resolve().load({"id": ...})."""
         from entity.resolve_entity import ResolveEntity
         return ResolveEntity(self, data)
 
 
-    @property
-    def tokenize(self):
-        """Idiomatic facade: client.tokenize.list() / client.tokenize.load({"id": ...})."""
-        from entity.tokenize_entity import TokenizeEntity
-        cached = getattr(self, "_tokenize", None)
-        if cached is None:
-            cached = TokenizeEntity(self, None)
-            self._tokenize = cached
-        return cached
-
-    def Tokenize(self, data=None):
-        # Deprecated: use client.tokenize instead.
+    def Tokenize(self, data=None) -> "TokenizeEntity":
+        """Entity factory: client.Tokenize().list({}) / client.Tokenize().load({"id": ...})."""
         from entity.tokenize_entity import TokenizeEntity
         return TokenizeEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "MathFunctionParserSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class MathFunctionParserSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.calc_entity import CalcEntity
+    from entity.resolve_entity import ResolveEntity
+    from entity.tokenize_entity import TokenizeEntity

@@ -88,7 +88,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## CalcEntity
 
 ```python
-calc = client.calc
+calc = client.Calc()
 ```
 
 ### Fields
@@ -105,7 +105,9 @@ calc = client.calc
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.calc.list({})
+results = client.Calc().list({})
+for calc in results:
+    print(calc)
 ```
 
 ### Common Methods
@@ -140,7 +142,7 @@ Return the entity name.
 ## ResolveEntity
 
 ```python
-resolve = client.resolve
+resolve = client.Resolve()
 ```
 
 ### Operations
@@ -150,7 +152,7 @@ resolve = client.resolve
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.resolve.load({"id": "resolve_id"})
+result = client.Resolve().load({"id": "resolve_id"})
 ```
 
 ### Common Methods
@@ -185,7 +187,7 @@ Return the entity name.
 ## TokenizeEntity
 
 ```python
-tokenize = client.tokenize
+tokenize = client.Tokenize()
 ```
 
 ### Fields
@@ -202,7 +204,9 @@ tokenize = client.tokenize
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.tokenize.list({})
+results = client.Tokenize().list({})
+for tokenize in results:
+    print(tokenize)
 ```
 
 ### Common Methods

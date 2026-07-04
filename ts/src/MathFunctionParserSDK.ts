@@ -206,42 +206,21 @@ class MathFunctionParserSDK {
 
 
 
-  _calc?: CalcEntity
-
-  // Idiomatic facade: `client.calc.list()` / `client.calc.load({ id })`.
-  get calc(): CalcEntity {
-    return (this._calc ??= new CalcEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.calc` instead. */
+  // Entity access: `client.Calc().list()` / `client.Calc().load({ id })`.
   Calc(data?: any) {
     const self = this
     return new CalcEntity(self,data)
   }
 
 
-  _resolve?: ResolveEntity
-
-  // Idiomatic facade: `client.resolve.list()` / `client.resolve.load({ id })`.
-  get resolve(): ResolveEntity {
-    return (this._resolve ??= new ResolveEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.resolve` instead. */
+  // Entity access: `client.Resolve().list()` / `client.Resolve().load({ id })`.
   Resolve(data?: any) {
     const self = this
     return new ResolveEntity(self,data)
   }
 
 
-  _tokenize?: TokenizeEntity
-
-  // Idiomatic facade: `client.tokenize.list()` / `client.tokenize.load({ id })`.
-  get tokenize(): TokenizeEntity {
-    return (this._tokenize ??= new TokenizeEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.tokenize` instead. */
+  // Entity access: `client.Tokenize().list()` / `client.Tokenize().load({ id })`.
   Tokenize(data?: any) {
     const self = this
     return new TokenizeEntity(self,data)

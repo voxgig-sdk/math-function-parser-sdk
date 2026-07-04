@@ -94,7 +94,7 @@ same parameters as `direct()`. Raises on error.
 ## CalcEntity
 
 ```ruby
-calc = client.calc
+calc = client.Calc
 ```
 
 ### Fields
@@ -111,7 +111,7 @@ calc = client.calc
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.calc.list(nil)
+results = client.Calc.list(nil)
 ```
 
 ### Common Methods
@@ -147,7 +147,7 @@ Return the entity name.
 ## ResolveEntity
 
 ```ruby
-resolve = client.resolve
+resolve = client.Resolve
 ```
 
 ### Operations
@@ -157,7 +157,7 @@ resolve = client.resolve
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.resolve.load({ "id" => "resolve_id" })
+result = client.Resolve.load({ "id" => "resolve_id" })
 ```
 
 ### Common Methods
@@ -193,7 +193,7 @@ Return the entity name.
 ## TokenizeEntity
 
 ```ruby
-tokenize = client.tokenize
+tokenize = client.Tokenize
 ```
 
 ### Fields
@@ -210,7 +210,7 @@ tokenize = client.tokenize
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.tokenize.list(nil)
+results = client.Tokenize.list(nil)
 ```
 
 ### Common Methods

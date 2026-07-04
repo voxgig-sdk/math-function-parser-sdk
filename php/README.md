@@ -29,18 +29,16 @@ require_once 'mathfunctionparser_sdk.php';
 $client = new MathFunctionParserSDK();
 ```
 
-### 2. List calcs
+### 2. List calc records
 
 ```php
 try {
-    $result = $client->calc()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Calc records — iterate directly.
+    $calcs = $client->Calc()->list();
+    foreach ($calcs as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = MathFunctionParserSDK::test();
+$client = MathFunctionParserSDK::test([
+    "entity" => ["calc" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->calc()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$calc = $client->Calc()->load(["id" => "test01"]);
+print_r($calc);
 ```
 
 ### Use a custom fetch function
@@ -251,7 +253,7 @@ API path: `/v1/ast`
 
 ### Calc
 
-Create an instance: `const calc = client.calc`
+Create an instance: `$calc = $client->Calc();`
 
 #### Operations
 
@@ -268,14 +270,15 @@ Create an instance: `const calc = client.calc`
 
 #### Example: List
 
-```ts
-const calcs = await client.calc.list()
+```php
+// list() returns an array of Calc records (throws on error).
+$calcs = $client->Calc()->list();
 ```
 
 
 ### Resolve
 
-Create an instance: `const resolve = client.resolve`
+Create an instance: `$resolve = $client->Resolve();`
 
 #### Operations
 
@@ -285,14 +288,15 @@ Create an instance: `const resolve = client.resolve`
 
 #### Example: Load
 
-```ts
-const resolve = await client.resolve.load({ id: 'resolve_id' })
+```php
+// load() returns the bare Resolve record (throws on error).
+$resolve = $client->Resolve()->load(["id" => "resolve_id"]);
 ```
 
 
 ### Tokenize
 
-Create an instance: `const tokenize = client.tokenize`
+Create an instance: `$tokenize = $client->Tokenize();`
 
 #### Operations
 
@@ -309,8 +313,9 @@ Create an instance: `const tokenize = client.tokenize`
 
 #### Example: List
 
-```ts
-const tokenizes = await client.tokenize.list()
+```php
+// list() returns an array of Tokenize records (throws on error).
+$tokenizes = $client->Tokenize()->list();
 ```
 
 
@@ -385,7 +390,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$calc = $client->calc();
+$calc = $client->Calc();
 $calc->load(["id" => "example_id"]);
 
 // $calc->dataGet() now returns the loaded calc data
