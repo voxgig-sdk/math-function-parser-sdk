@@ -19,7 +19,7 @@ class Calc
     public ?string $type = null;
 }
 
-/** Match filter for Calc#list (any subset of Calc fields). */
+/** Request payload for Calc#list. */
 class CalcListMatch
 {
     public ?string $data = null;
@@ -31,7 +31,7 @@ class Resolve
 {
 }
 
-/** Match filter for Resolve#load (any subset of Resolve fields). */
+/** Request payload for Resolve#load. */
 class ResolveLoadMatch
 {
 }
@@ -43,7 +43,7 @@ class Tokenize
     public ?string $type = null;
 }
 
-/** Match filter for Tokenize#list (any subset of Tokenize fields). */
+/** Request payload for Tokenize#list. */
 class TokenizeListMatch
 {
     public ?string $data = null;

@@ -14,8 +14,7 @@ type Calc struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// CalcListMatch mirrors the calc fields as an all-optional match
-// filter (Go analog of Partial<Calc>).
+// CalcListMatch is the typed request payload for Calc.ListTyped.
 type CalcListMatch struct {
 	Data *string `json:"data,omitempty"`
 	Type *string `json:"type,omitempty"`
@@ -25,8 +24,7 @@ type CalcListMatch struct {
 type Resolve struct {
 }
 
-// ResolveLoadMatch mirrors the resolve fields as an all-optional match
-// filter (Go analog of Partial<Resolve>).
+// ResolveLoadMatch is the typed request payload for Resolve.LoadTyped.
 type ResolveLoadMatch struct {
 }
 
@@ -36,8 +34,7 @@ type Tokenize struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// TokenizeListMatch mirrors the tokenize fields as an all-optional match
-// filter (Go analog of Partial<Tokenize>).
+// TokenizeListMatch is the typed request payload for Tokenize.ListTyped.
 type TokenizeListMatch struct {
 	Data *string `json:"data,omitempty"`
 	Type *string `json:"type,omitempty"`

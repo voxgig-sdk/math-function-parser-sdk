@@ -8,7 +8,7 @@ Complete API reference for the MathFunctionParser Python SDK.
 ### Constructor
 
 ```python
-from math-function-parser_sdk import MathFunctionParserSDK
+from mathfunctionparser_sdk import MathFunctionParserSDK
 
 client = MathFunctionParserSDK(options)
 ```
@@ -95,17 +95,17 @@ calc = client.Calc()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Calc().list({})
+results = client.Calc().list()
 for calc in results:
     print(calc)
 ```
@@ -152,7 +152,7 @@ resolve = client.Resolve()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Resolve().load({"id": "resolve_id"})
+result = client.Resolve().load()
 ```
 
 ### Common Methods
@@ -194,17 +194,17 @@ tokenize = client.Tokenize()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Tokenize().list({})
+results = client.Tokenize().list()
 for tokenize in results:
     print(tokenize)
 ```

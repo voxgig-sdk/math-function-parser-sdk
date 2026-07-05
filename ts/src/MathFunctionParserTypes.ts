@@ -10,17 +10,24 @@ export interface Calc {
   type?: string
 }
 
-export type CalcListMatch = Partial<Calc>
+export interface CalcListMatch {
+  data?: string
+  type?: string
+}
 
 export interface Resolve {
 }
 
-export type ResolveLoadMatch = Partial<Resolve>
+export interface ResolveLoadMatch {
+}
 
 export interface Tokenize {
   data?: string
   type?: string
 }
 
-export type TokenizeListMatch = Partial<Tokenize>
+export interface TokenizeListMatch {
+  data?: string
+  type?: string
+}
 

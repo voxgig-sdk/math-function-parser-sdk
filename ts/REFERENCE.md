@@ -140,8 +140,8 @@ const calc = client.Calc()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -194,7 +194,7 @@ const resolve = client.Resolve()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Resolve().load({ id: 'resolve_id' })
+const result = await client.Resolve().load()
 ```
 
 ### Common Methods
@@ -235,8 +235,8 @@ const tokenize = client.Tokenize()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 

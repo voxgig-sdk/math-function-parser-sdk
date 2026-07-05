@@ -105,8 +105,8 @@ calc := client.Calc(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -155,7 +155,7 @@ resolve := client.Resolve(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Resolve(nil).Load(map[string]any{"id": "resolve_id"}, nil)
+result, err := client.Resolve(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -192,8 +192,8 @@ tokenize := client.Tokenize(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 

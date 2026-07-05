@@ -98,8 +98,8 @@ local calc = client:Calc(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -154,7 +154,7 @@ local resolve = client:Resolve(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Resolve():load({ id = "resolve_id" })
+local result, err = client:Resolve():load()
 ```
 
 ### Common Methods
@@ -197,8 +197,8 @@ local tokenize = client:Tokenize(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 

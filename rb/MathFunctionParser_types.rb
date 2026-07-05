@@ -21,7 +21,7 @@ Calc = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Calc#list (any subset of Calc fields).
+# Request payload for Calc#list.
 #
 # @!attribute [rw] data
 #   @return [String, nil]
@@ -38,7 +38,7 @@ CalcListMatch = Struct.new(
 class Resolve
 end
 
-# Match filter for Resolve#load (any subset of Resolve fields).
+# Request payload for Resolve#load.
 class ResolveLoadMatch
 end
 
@@ -55,7 +55,7 @@ Tokenize = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Tokenize#list (any subset of Tokenize fields).
+# Request payload for Tokenize#list.
 #
 # @!attribute [rw] data
 #   @return [String, nil]

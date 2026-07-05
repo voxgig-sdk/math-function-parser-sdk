@@ -221,19 +221,19 @@ class MathFunctionParserSDK:
 
 
     def Calc(self, data=None) -> "CalcEntity":
-        """Entity factory: client.Calc().list({}) / client.Calc().load({"id": ...})."""
+        """Entity factory: client.Calc().list() / client.Calc().load({"id": ...})."""
         from entity.calc_entity import CalcEntity
         return CalcEntity(self, data)
 
 
     def Resolve(self, data=None) -> "ResolveEntity":
-        """Entity factory: client.Resolve().list({}) / client.Resolve().load({"id": ...})."""
+        """Entity factory: client.Resolve().list() / client.Resolve().load({"id": ...})."""
         from entity.resolve_entity import ResolveEntity
         return ResolveEntity(self, data)
 
 
     def Tokenize(self, data=None) -> "TokenizeEntity":
-        """Entity factory: client.Tokenize().list({}) / client.Tokenize().load({"id": ...})."""
+        """Entity factory: client.Tokenize().list() / client.Tokenize().load({"id": ...})."""
         from entity.tokenize_entity import TokenizeEntity
         return TokenizeEntity(self, data)
 

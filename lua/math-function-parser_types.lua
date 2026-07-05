@@ -11,6 +11,8 @@
 ---@field type? string
 
 ---@class CalcListMatch
+---@field data? string
+---@field type? string
 
 ---@class Resolve
 
@@ -21,6 +23,8 @@
 ---@field type? string
 
 ---@class TokenizeListMatch
+---@field data? string
+---@field type? string
 
 local M = {}
 

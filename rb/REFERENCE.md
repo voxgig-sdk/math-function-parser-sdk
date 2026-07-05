@@ -8,7 +8,7 @@ Complete API reference for the MathFunctionParser Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'math-function-parser_sdk'
+require_relative 'MathFunctionParser_sdk'
 
 client = MathFunctionParserSDK.new(options)
 ```
@@ -101,17 +101,17 @@ calc = client.Calc
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `String` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Calc.list(nil)
+results = client.Calc.list
 ```
 
 ### Common Methods
@@ -157,7 +157,7 @@ resolve = client.Resolve
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Resolve.load({ "id" => "resolve_id" })
+result = client.Resolve.load()
 ```
 
 ### Common Methods
@@ -200,17 +200,17 @@ tokenize = client.Tokenize
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `String` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Tokenize.list(nil)
+results = client.Tokenize.list
 ```
 
 ### Common Methods
