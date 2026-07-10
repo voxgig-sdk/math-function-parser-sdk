@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -450,6 +447,7 @@
           "name": "Apache License, Version 2.0",
           "url": "http://www.apache.org/licenses/LICENSE-2.0"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "server on oglimmer.de",
@@ -460,8 +458,10 @@
             "url": "http://localhost:8000"
           }
         ],
+        "summary": "A REST API to parse and resolve math functions.",
         "title": "Mathematical Function Parser Service",
-        "version": "1.0"
+        "version": "1.0",
+        "website": "https://math.oglimmer.de"
       },
       "option": {},
       "target": {
@@ -514,6 +514,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -564,6 +567,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

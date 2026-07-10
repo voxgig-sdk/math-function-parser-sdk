@@ -24,9 +24,9 @@ main: {
           url: "http://localhost:8000"
         }
       ]
+      summary: "A REST API to parse and resolve math functions."
       title: "Mathematical Function Parser Service"
       version: "1.0"
+      website: "https://math.oglimmer.de"
     }
   }
-}
-

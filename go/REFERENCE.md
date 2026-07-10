@@ -99,6 +99,7 @@ same parameters as `Direct()`.
 
 ```go
 calc := client.Calc(nil)
+fmt.Println(calc.GetName()) // "calc"
 ```
 
 ### Fields
@@ -116,6 +117,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Calc(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -146,6 +151,7 @@ Return the entity name.
 
 ```go
 resolve := client.Resolve(nil)
+fmt.Println(resolve.GetName()) // "resolve"
 ```
 
 ### Operations
@@ -156,6 +162,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Resolve(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -186,6 +196,7 @@ Return the entity name.
 
 ```go
 tokenize := client.Tokenize(nil)
+fmt.Println(tokenize.GetName()) // "tokenize"
 ```
 
 ### Fields
@@ -203,6 +214,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Tokenize(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
