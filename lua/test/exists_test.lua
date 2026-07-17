@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- MathFunctionParser SDK exists test
 
 local sdk = require("math-function-parser_sdk")
 
