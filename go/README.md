@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-calcs, err := client.Calc(nil).List(nil, nil)
+tokenizes, err := client.Tokenize(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = calcs
+_ = tokenizes
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-calc, err := client.Calc(nil).List(
+tokenize, err := client.Tokenize(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(calc) // the returned mock data
+fmt.Println(tokenize) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -446,11 +446,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-calc := client.Calc(nil)
-calc.List(nil, nil)
+tokenize := client.Tokenize(nil)
+tokenize.List(nil, nil)
 
-// calc.Data() now returns the calc data from the last list
-// calc.Match() returns the last match criteria
+// tokenize.Data() now returns the tokenize data from the last list
+// tokenize.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

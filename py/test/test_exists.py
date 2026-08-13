@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# MathFunctionParser SDK exists test
 
 import pytest
 from mathfunctionparser_sdk import MathFunctionParserSDK

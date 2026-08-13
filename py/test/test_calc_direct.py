@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from mathfunctionparser_sdk.utility.voxgig_struct import voxgig_struct as vs
 from mathfunctionparser_sdk import MathFunctionParserSDK
-from core import helpers
+from mathfunctionparser_sdk.core import helpers
 from test import runner
 
 
@@ -58,11 +58,11 @@ def _calc_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "MATHFUNCTIONPARSER_TEST_CALC_ENTID": {},
-        "MATHFUNCTIONPARSER_TEST_LIVE": "FALSE",
+        "MATH_FUNCTION_PARSER_TEST_CALC_ENTID": {},
+        "MATH_FUNCTION_PARSER_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("MATHFUNCTIONPARSER_TEST_LIVE") == "TRUE"
+    live = env.get("MATH_FUNCTION_PARSER_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

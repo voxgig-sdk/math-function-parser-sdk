@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import MathFunctionParserSDK
-from core.error import MathFunctionParserError
-from core.result import MathFunctionParserResult
-from core.response import MathFunctionParserResponse
-from core.spec import MathFunctionParserSpec
-from feature.base_feature import MathFunctionParserBaseFeature
+from projectname_sdk.core.error import MathFunctionParserError
+from projectname_sdk.core.result import MathFunctionParserResult
+from projectname_sdk.core.response import MathFunctionParserResponse
+from projectname_sdk.core.spec import MathFunctionParserSpec
+from projectname_sdk.feature.base_feature import MathFunctionParserBaseFeature
 
 
 def _client():

@@ -43,8 +43,8 @@ class MathFunctionParserTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('MATHFUNCTIONPARSER_TEST_LIVE');
-        $override = self::getenv('MATHFUNCTIONPARSER_TEST_OVERRIDE');
+        $live = self::getenv('MATH_FUNCTION_PARSER_TEST_LIVE');
+        $override = self::getenv('MATH_FUNCTION_PARSER_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class MathFunctionParserTestRunner
             }
         }
 
-        $explain = self::getenv('MATHFUNCTIONPARSER_TEST_EXPLAIN');
+        $explain = self::getenv('MATH_FUNCTION_PARSER_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['MATHFUNCTIONPARSER_TEST_EXPLAIN'] = $explain;
+            $m['MATH_FUNCTION_PARSER_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

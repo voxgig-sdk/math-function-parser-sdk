@@ -37,7 +37,7 @@ class TokenizeEntity extends MathFunctionParserEntityBase<Tokenize> {
 
 
 
-  async list(this: any, reqmatch?: TokenizeListMatch, ctrl?: Control): Promise<Tokenize[]> {
+  async list(this: any, reqmatch?: TokenizeListMatch, ctrl?: Control): Promise<TokenizeEntity[]> {
 
     const utility = this._utility
 

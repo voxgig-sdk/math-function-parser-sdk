@@ -23,8 +23,8 @@ module MathFunctionParserTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("MATHFUNCTIONPARSER_TEST_LIVE")
-    override = getenv("MATHFUNCTIONPARSER_TEST_OVERRIDE")
+    live = getenv("MATH_FUNCTION_PARSER_TEST_LIVE")
+    override = getenv("MATH_FUNCTION_PARSER_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module MathFunctionParserTestRunner
       end
     end
 
-    explain = getenv("MATHFUNCTIONPARSER_TEST_EXPLAIN")
-    m["MATHFUNCTIONPARSER_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("MATH_FUNCTION_PARSER_TEST_EXPLAIN")
+    m["MATH_FUNCTION_PARSER_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

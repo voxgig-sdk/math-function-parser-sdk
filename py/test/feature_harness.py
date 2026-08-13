@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import MathFunctionParserControl
-from core.error import MathFunctionParserError
-from core.result import MathFunctionParserResult
-from core.spec import MathFunctionParserSpec
+from mathfunctionparser_sdk.config import make_config
+from mathfunctionparser_sdk.features import _make_feature
+from mathfunctionparser_sdk.core.control import MathFunctionParserControl
+from mathfunctionparser_sdk.core.error import MathFunctionParserError
+from mathfunctionparser_sdk.core.result import MathFunctionParserResult
+from mathfunctionparser_sdk.core.spec import MathFunctionParserSpec
 
 
 # True when this SDK was generated with the named feature.

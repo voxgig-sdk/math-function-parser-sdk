@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ MathFunctionParserUtility.registrar = ->(u) {
   u.prepare_params = MathFunctionParserUtilities::PrepareParams
   u.prepare_path = MathFunctionParserUtilities::PreparePath
   u.prepare_query = MathFunctionParserUtilities::PrepareQuery
+  u.graphql_body = MathFunctionParserUtilities::GraphqlBody
+  u.graphql_errors = MathFunctionParserUtilities::GraphqlErrors
   u.result_basic = MathFunctionParserUtilities::ResultBasic
   u.result_body = MathFunctionParserUtilities::ResultBody
   u.result_headers = MathFunctionParserUtilities::ResultHeaders

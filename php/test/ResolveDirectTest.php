@@ -65,11 +65,11 @@ function resolve_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "MATHFUNCTIONPARSER_TEST_RESOLVE_ENTID" => [],
-        "MATHFUNCTIONPARSER_TEST_LIVE" => "FALSE",
+        "MATH_FUNCTION_PARSER_TEST_RESOLVE_ENTID" => [],
+        "MATH_FUNCTION_PARSER_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["MATHFUNCTIONPARSER_TEST_LIVE"] === "TRUE";
+    $live = $env["MATH_FUNCTION_PARSER_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

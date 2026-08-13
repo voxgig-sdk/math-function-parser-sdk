@@ -70,6 +70,7 @@ module MathFunctionParserConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/calc",
                   "parts" => [
@@ -126,6 +127,7 @@ module MathFunctionParserConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/resolve",
                   "parts" => [
@@ -197,6 +199,7 @@ module MathFunctionParserConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/ast",
                   "parts" => [
@@ -211,7 +214,7 @@ module MathFunctionParserConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.tokens`",
                   },
                   "index$" => 0,
                 },
@@ -237,6 +240,7 @@ module MathFunctionParserConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/tokenize",
                   "parts" => [
@@ -251,7 +255,7 @@ module MathFunctionParserConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.tokens`",
                   },
                   "index$" => 1,
                 },

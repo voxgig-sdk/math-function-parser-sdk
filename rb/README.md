@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  calcs = client.Calc.list()
+  tokenizes = client.Tokenize.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -119,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = MathFunctionParserSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-calc = client.Calc.list()
-puts calc
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+tokenize = client.Tokenize.list()
+puts tokenize
 ```
 
 ### Use a custom fetch function
@@ -309,7 +310,7 @@ Create an instance: `resolve = client.Resolve`
 #### Example: Load
 
 ```ruby
-# load returns the bare Resolve record (raises on error).
+# load returns the ENTITY — call data_get for the Resolve record (raises on error).
 resolve = client.Resolve.load()
 ```
 
@@ -415,11 +416,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-calc = client.Calc
-calc.list()
+tokenize = client.Tokenize
+tokenize.list()
 
-# calc.data_get now returns the calc data from the last list
-# calc.match_get returns the last match criteria
+# tokenize.data_get now returns the tokenize data from the last list
+# tokenize.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

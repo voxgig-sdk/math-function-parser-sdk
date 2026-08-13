@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = MathFunctionParserSDK.test()
-const calcs = await client.Calc().list()
-// calcs is an array of bare Calc records populated with mock data
-console.log(calcs)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = MathFunctionParserSDK.test({
+  entity: {
+    tokenize: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const tokenizes = await client.Tokenize().list()
+// tokenizes is an array of Tokenize entities, populated with mock data
+// — call tokenizes[0].data() for the record itself
+console.log(tokenizes)
 ```
 
 ### Python
 
 ```python
 client = MathFunctionParserSDK.test()
-calcs = client.Calc().list()
-print(calcs)
+tokenizes = client.Tokenize().list()
+print(tokenizes)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(calcs)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = MathFunctionParserSDK::test([
-    "entity" => ["calc" => ["test01" => []]],
+    "entity" => ["tokenize" => ["test01" => []]],
 ]);
-$calcs = $client->Calc()->list();
+$tokenizes = $client->Tokenize()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Calc(nil).List(
+result, err := client.Tokenize(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Calc(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = MathFunctionParserSDK.test({
-  "entity" => { "calc" => { "test01" => {} } },
+  "entity" => { "tokenize" => { "test01" => {} } },
 })
-calcs = client.Calc.list()
+tokenizes = client.Tokenize.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Calc():list()
+local results, err = client:Tokenize():list()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser'
 
 const client = new MathFunctionParserSDK()
 
-// List all calcs (returns Calc[])
+// List all calcs (returns CalcEntity[] — .data() for the record)
 const calcs = await client.Calc().list()
 for (const calc of calcs) {
   console.log(calc)
@@ -345,6 +354,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://math.oglimmer.de](https://math.oglimmer.de)
 

@@ -69,6 +69,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/calc",
                 ["parts"] = {
@@ -125,6 +126,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/resolve",
                 ["parts"] = {
@@ -196,6 +198,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/ast",
                 ["parts"] = {
@@ -210,7 +213,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.tokens`",
                 },
                 ["index$"] = 0,
               },
@@ -236,6 +239,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/tokenize",
                 ["parts"] = {
@@ -250,7 +254,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.tokens`",
                 },
                 ["index$"] = 1,
               },

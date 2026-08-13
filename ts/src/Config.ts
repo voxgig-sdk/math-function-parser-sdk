@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'MathFunctionParser',
   }
 
 
@@ -103,6 +103,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/calc",
               "parts": [
@@ -159,6 +160,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/resolve",
               "parts": [
@@ -230,6 +232,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/ast",
               "parts": [
@@ -244,7 +247,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.tokens`"
               },
               "index$": 0
             },
@@ -270,6 +273,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/tokenize",
               "parts": [
@@ -284,7 +288,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.tokens`"
               },
               "index$": 1
             }

@@ -37,7 +37,7 @@ class CalcEntity extends MathFunctionParserEntityBase<Calc> {
 
 
 
-  async list(this: any, reqmatch?: CalcListMatch, ctrl?: Control): Promise<Calc[]> {
+  async list(this: any, reqmatch?: CalcListMatch, ctrl?: Control): Promise<CalcEntity[]> {
 
     const utility = this._utility
 

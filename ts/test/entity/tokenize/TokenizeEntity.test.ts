@@ -26,8 +26,8 @@ import {
 describe('TokenizeEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MATHFUNCTIONPARSER_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MATHFUNCTIONPARSER_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MATH_FUNCTION_PARSER_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MATH_FUNCTION_PARSER_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MathFunctionParserSDK.test()
@@ -63,7 +63,7 @@ describe('TokenizeEntity', async () => {
     const tokenize_ref01_ent = client.Tokenize()
     const tokenize_ref01_match: any = {}
 
-    const tokenize_ref01_list = await tokenize_ref01_ent.list(tokenize_ref01_match)
+    const tokenize_ref01_list = (await tokenize_ref01_ent.list(tokenize_ref01_match)).map((e: any) => e.data())
 
 
   })

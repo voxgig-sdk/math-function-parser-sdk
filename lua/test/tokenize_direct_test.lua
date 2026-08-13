@@ -61,11 +61,11 @@ function tokenize_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["MATHFUNCTIONPARSER_TEST_TOKENIZE_ENTID"] = {},
-    ["MATHFUNCTIONPARSER_TEST_LIVE"] = "FALSE",
+    ["MATH_FUNCTION_PARSER_TEST_TOKENIZE_ENTID"] = {},
+    ["MATH_FUNCTION_PARSER_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["MATHFUNCTIONPARSER_TEST_LIVE"] == "TRUE"
+  local live = env["MATH_FUNCTION_PARSER_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

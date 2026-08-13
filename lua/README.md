@@ -54,7 +54,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local calcs, err = client:Calc():list()
+local tokenizes, err = client:Tokenize():list()
 if err then error(err) end
 ```
 
@@ -112,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Calc():list()
+local result, err = client:Tokenize():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -222,9 +222,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local calc, err = client:Calc():load()
+    local resolve, err = client:Resolve():load()
     if err then error(err) end
-    -- calc is the loaded record
+    -- resolve is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -408,11 +408,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local calc = client:Calc()
-calc:list()
+local tokenize = client:Tokenize()
+tokenize:list()
 
--- calc:data_get() now returns the calc data from the last list
--- calc:match_get() returns the last match criteria
+-- tokenize:data_get() now returns the tokenize data from the last list
+-- tokenize:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

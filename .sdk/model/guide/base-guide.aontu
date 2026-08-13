@@ -20,9 +20,11 @@ guide: {
   entity: tokenize: {
     path: "/v1/ast": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.tokens`")|top
     }
     path: "/v1/tokenize": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.tokens`")|top
     }
   }
 
