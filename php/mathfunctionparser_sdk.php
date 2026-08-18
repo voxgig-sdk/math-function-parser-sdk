@@ -40,7 +40,7 @@ class MathFunctionParserSDK
         $utility = new MathFunctionParserUtility();
         $this->_utility = $utility;
 
-        $config = MathFunctionParserConfig::make_config();
+        $config = MathFunctionParserConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

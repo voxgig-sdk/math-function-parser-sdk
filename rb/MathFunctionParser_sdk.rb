@@ -28,7 +28,7 @@ class MathFunctionParserSDK
     utility = MathFunctionParserUtility.new
     @_utility = utility
 
-    config = MathFunctionParserConfig.make_config
+    config = MathFunctionParserConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

@@ -23,8 +23,8 @@ class MathFunctionParserSDK:
         utility = MathFunctionParserUtility()
         self._utility = utility
 
-        from mathfunctionparser_sdk.config import make_config
-        config = make_config()
+        from mathfunctionparser_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

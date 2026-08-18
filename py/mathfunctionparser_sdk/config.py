@@ -1,7 +1,30 @@
 # MathFunctionParser SDK configuration
 
 
+_shared_config = None
+
+
+def shared_config():
+    """Return the process-wide config, built once on first use.
+
+    The SDK reads the config on every request and never writes to it, so one
+    instance is shared by every client rather than rebuilt per client.
+
+    The returned dict is shared: treat it as read-only. Callers that need to
+    mutate should use make_config, which always returns a fresh copy.
+    """
+    global _shared_config
+    if _shared_config is None:
+        _shared_config = make_config()
+    return _shared_config
+
+
 def make_config():
+    """Build a fresh, fully materialised config dict.
+
+    Every call rebuilds the whole structure, so prefer shared_config unless
+    you need a private copy you intend to mutate.
+    """
     return {
         "main": {
             "name": "MathFunctionParser",
@@ -28,18 +51,12 @@ def make_config():
       "calc": {
         "fields": [
           {
-            "active": True,
             "name": "data",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "type",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 1,
           },
         ],
         "name": "calc",
@@ -49,11 +66,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "expression",
                       "orig": "expression",
@@ -61,11 +76,9 @@ def make_config():
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "x",
                       "orig": "x",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -87,10 +100,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
@@ -106,11 +117,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "expression",
                       "orig": "expression",
@@ -118,11 +127,9 @@ def make_config():
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "x",
                       "orig": "x",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -144,10 +151,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {
@@ -157,18 +162,12 @@ def make_config():
       "tokenize": {
         "fields": [
           {
-            "active": True,
             "name": "data",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "type",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 1,
           },
         ],
         "name": "tokenize",
@@ -178,11 +177,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "expression",
                       "orig": "expression",
@@ -190,11 +187,9 @@ def make_config():
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "x",
                       "orig": "x",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -216,14 +211,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.tokens`",
                 },
-                "index$": 0,
               },
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "expression",
                       "orig": "expression",
@@ -231,11 +223,9 @@ def make_config():
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "x",
                       "orig": "x",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -257,10 +247,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.tokens`",
                 },
-                "index$": 1,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {

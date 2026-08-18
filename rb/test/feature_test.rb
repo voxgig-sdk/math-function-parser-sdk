@@ -15,7 +15,7 @@ require_relative "../MathFunctionParser_sdk"
 module MathFunctionParserFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = MathFunctionParserConfig.make_config["feature"]
+    f = MathFunctionParserConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

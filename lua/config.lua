@@ -1,5 +1,8 @@
 -- MathFunctionParser SDK configuration
 
+-- Build a fresh, fully materialised config table. Every call rebuilds the
+-- whole structure, so prefer require("config_shared") unless you need a
+-- private copy you intend to mutate.
 local function make_config()
   return {
     main = {
@@ -27,18 +30,12 @@ local function make_config()
       ["calc"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "data",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "type",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 1,
           },
         },
         ["name"] = "calc",
@@ -48,11 +45,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "expression",
                       ["orig"] = "expression",
@@ -60,11 +55,9 @@ local function make_config()
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "x",
                       ["orig"] = "x",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -86,10 +79,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {
@@ -105,11 +96,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "expression",
                       ["orig"] = "expression",
@@ -117,11 +106,9 @@ local function make_config()
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "x",
                       ["orig"] = "x",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -143,10 +130,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {
@@ -156,18 +141,12 @@ local function make_config()
       ["tokenize"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "data",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "type",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 1,
           },
         },
         ["name"] = "tokenize",
@@ -177,11 +156,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "expression",
                       ["orig"] = "expression",
@@ -189,11 +166,9 @@ local function make_config()
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "x",
                       ["orig"] = "x",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -215,14 +190,11 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.tokens`",
                 },
-                ["index$"] = 0,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "expression",
                       ["orig"] = "expression",
@@ -230,11 +202,9 @@ local function make_config()
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "x",
                       ["orig"] = "x",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -256,10 +226,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.tokens`",
                 },
-                ["index$"] = 1,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {

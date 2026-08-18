@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://math.oglimmer.de',
+    base: "https://math.oglimmer.de",
 
     headers: {
       "content-type": "application/json"
@@ -61,18 +61,12 @@ class Config {
     "calc": {
       "fields": [
         {
-          "active": true,
           "name": "data",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "type",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         }
       ],
       "name": "calc",
@@ -82,11 +76,9 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "expression",
                     "orig": "expression",
@@ -94,11 +86,9 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "x",
                     "orig": "x",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -119,11 +109,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -139,11 +127,9 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "expression",
                     "orig": "expression",
@@ -151,11 +137,9 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "x",
                     "orig": "x",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -176,11 +160,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -190,18 +172,12 @@ class Config {
     "tokenize": {
       "fields": [
         {
-          "active": true,
           "name": "data",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "type",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         }
       ],
       "name": "tokenize",
@@ -211,11 +187,9 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "expression",
                     "orig": "expression",
@@ -223,11 +197,9 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "x",
                     "orig": "x",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -248,15 +220,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.tokens`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "expression",
                     "orig": "expression",
@@ -264,11 +233,9 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "x",
                     "orig": "x",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -289,11 +256,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.tokens`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {

@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from mathfunctionparser_sdk.config import make_config
+from mathfunctionparser_sdk.config import shared_config
 from mathfunctionparser_sdk.features import _make_feature
 from mathfunctionparser_sdk.core.control import MathFunctionParserControl
 from mathfunctionparser_sdk.core.error import MathFunctionParserError
@@ -24,7 +24,7 @@ from mathfunctionparser_sdk.core.spec import MathFunctionParserSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

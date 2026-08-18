@@ -23,6 +23,7 @@ build = {
   modules = {
     ["math-function-parser_sdk"] = "math-function-parser_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }
