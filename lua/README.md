@@ -235,8 +235,8 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `type` |  |
+| `data` | Token data |
+| `type` | Token type |
 
 Operations: List.
 
@@ -255,8 +255,8 @@ API path: `/v1/resolve`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `type` |  |
+| `data` | Token data |
+| `type` | Token type |
 
 Operations: List.
 
@@ -281,8 +281,8 @@ Create an instance: `local calc = client:Calc(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `string` |  |
-| `type` | `string` |  |
+| `data` | `string` | Token data |
+| `type` | `string` | Token type |
 
 #### Example: List
 
@@ -322,8 +322,8 @@ Create an instance: `local tokenize = client:Tokenize(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `string` |  |
-| `type` | `string` |  |
+| `data` | `string` | Token data |
+| `type` | `string` | Token type |
 
 #### Example: List
 

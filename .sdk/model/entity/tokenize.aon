@@ -8,11 +8,13 @@ main: kit: entity: tokenize: {
     {
       name: "data"
       req: false
+      short: "Token data"
       type: "`$STRING`"
     }
     {
       name: "type"
       req: false
+      short: "Token type"
       type: "`$STRING`"
     }
   ]

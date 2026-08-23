@@ -98,8 +98,8 @@ local calc = client:Calc(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `string` | No |  |
-| `type` | `string` | No |  |
+| `data` | `string` | No | Token data |
+| `type` | `string` | No | Token type |
 
 ### Operations
 
@@ -197,8 +197,8 @@ local tokenize = client:Tokenize(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `string` | No |  |
-| `type` | `string` | No |  |
+| `data` | `string` | No | Token data |
+| `type` | `string` | No | Token type |
 
 ### Operations
 

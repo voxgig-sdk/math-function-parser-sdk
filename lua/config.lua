@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "MathFunctionParser",
+      slug = "math-function-parser",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -31,10 +34,12 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "data",
+            ["short"] = "Token data",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "type",
+            ["short"] = "Token type",
             ["type"] = "`$STRING`",
           },
         },
@@ -142,10 +147,12 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "data",
+            ["short"] = "Token data",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "type",
+            ["short"] = "Token type",
             ["type"] = "`$STRING`",
           },
         },

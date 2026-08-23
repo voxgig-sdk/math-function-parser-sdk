@@ -95,8 +95,8 @@ calc = client.Calc()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `str` | No |  |
-| `type` | `str` | No |  |
+| `data` | `str` | No | Token data |
+| `type` | `str` | No | Token type |
 
 ### Operations
 
@@ -194,8 +194,8 @@ tokenize = client.Tokenize()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `str` | No |  |
-| `type` | `str` | No |  |
+| `data` | `str` | No | Token data |
+| `type` | `str` | No | Token type |
 
 ### Operations
 

@@ -240,8 +240,8 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `type` |  |
+| `data` | Token data |
+| `type` | Token type |
 
 Operations: List.
 
@@ -260,8 +260,8 @@ API path: `/v1/resolve`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `type` |  |
+| `data` | Token data |
+| `type` | Token type |
 
 Operations: List.
 
@@ -286,8 +286,8 @@ Create an instance: `calc = client.Calc`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `String` |  |
-| `type` | `String` |  |
+| `data` | `String` | Token data |
+| `type` | `String` | Token type |
 
 #### Example: List
 
@@ -329,8 +329,8 @@ Create an instance: `tokenize = client.Tokenize`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `String` |  |
-| `type` | `String` |  |
+| `data` | `String` | Token data |
+| `type` | `String` | Token type |
 
 #### Example: List
 

@@ -246,8 +246,8 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `type` |  |
+| `data` | Token data |
+| `type` | Token type |
 
 Operations: List.
 
@@ -266,8 +266,8 @@ API path: `/v1/resolve`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `type` |  |
+| `data` | Token data |
+| `type` | Token type |
 
 Operations: List.
 
@@ -292,8 +292,8 @@ Create an instance: `calc = client.Calc()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `str` |  |
-| `type` | `str` |  |
+| `data` | `str` | Token data |
+| `type` | `str` | Token type |
 
 #### Example: List
 
@@ -333,8 +333,8 @@ Create an instance: `tokenize = client.Tokenize()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `str` |  |
-| `type` | `str` |  |
+| `data` | `str` | Token data |
+| `type` | `str` | Token type |
 
 #### Example: List
 

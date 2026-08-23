@@ -106,8 +106,8 @@ fmt.Println(calc.GetName()) // "calc"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `string` | No |  |
-| `type` | `string` | No |  |
+| `data` | `string` | No | Token data |
+| `type` | `string` | No | Token type |
 
 ### Operations
 
@@ -203,8 +203,8 @@ fmt.Println(tokenize.GetName()) // "tokenize"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `string` | No |  |
-| `type` | `string` | No |  |
+| `data` | `string` | No | Token data |
+| `type` | `string` | No | Token type |
 
 ### Operations
 

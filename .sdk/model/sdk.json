@@ -36,12 +36,14 @@
               "active": true,
               "name": "data",
               "req": false,
+              "short": "Token data",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Token type",
               "type": "`$STRING`"
             }
           ],
@@ -167,12 +169,14 @@
               "active": true,
               "name": "data",
               "req": false,
+              "short": "Token data",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Token type",
               "type": "`$STRING`"
             }
           ],

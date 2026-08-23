@@ -19,6 +19,9 @@ module MathFunctionParserConfig
     {
       "main" => {
         "name" => "MathFunctionParser",
+        "slug" => "math-function-parser",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -43,10 +46,12 @@ module MathFunctionParserConfig
           "fields" => [
             {
               "name" => "data",
+              "short" => "Token data",
               "type" => "`$STRING`",
             },
             {
               "name" => "type",
+              "short" => "Token type",
               "type" => "`$STRING`",
             },
           ],
@@ -154,10 +159,12 @@ module MathFunctionParserConfig
           "fields" => [
             {
               "name" => "data",
+              "short" => "Token data",
               "type" => "`$STRING`",
             },
             {
               "name" => "type",
+              "short" => "Token type",
               "type" => "`$STRING`",
             },
           ],

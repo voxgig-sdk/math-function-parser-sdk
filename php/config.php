@@ -33,6 +33,9 @@ class MathFunctionParserConfig
         return [
             "main" => [
                 "name" => "MathFunctionParser",
+                "slug" => "math-function-parser",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -57,10 +60,12 @@ class MathFunctionParserConfig
           'fields' => [
             [
               'name' => 'data',
+              'short' => 'Token data',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type',
+              'short' => 'Token type',
               'type' => '`$STRING`',
             ],
           ],
@@ -168,10 +173,12 @@ class MathFunctionParserConfig
           'fields' => [
             [
               'name' => 'data',
+              'short' => 'Token data',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type',
+              'short' => 'Token type',
               'type' => '`$STRING`',
             ],
           ],

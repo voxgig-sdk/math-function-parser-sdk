@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -291,8 +291,8 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `type` |  |
+| `data` | Token data |
+| `type` | Token type |
 
 Operations: list.
 
@@ -311,8 +311,8 @@ API path: `/v1/resolve`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `type` |  |
+| `data` | Token data |
+| `type` | Token type |
 
 Operations: list.
 
@@ -337,8 +337,8 @@ Create an instance: `const calc = client.Calc()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `string` |  |
-| `type` | `string` |  |
+| `data` | `string` | Token data |
+| `type` | `string` | Token type |
 
 #### Example: List
 
@@ -378,8 +378,8 @@ Create an instance: `const tokenize = client.Tokenize()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `string` |  |
-| `type` | `string` |  |
+| `data` | `string` | Token data |
+| `type` | `string` | Token type |
 
 #### Example: List
 

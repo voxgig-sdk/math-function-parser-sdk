@@ -101,8 +101,8 @@ calc = client.Calc
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `String` | No |  |
-| `type` | `String` | No |  |
+| `data` | `String` | No | Token data |
+| `type` | `String` | No | Token type |
 
 ### Operations
 
@@ -200,8 +200,8 @@ tokenize = client.Tokenize
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `String` | No |  |
-| `type` | `String` | No |  |
+| `data` | `String` | No | Token data |
+| `type` | `String` | No | Token type |
 
 ### Operations
 

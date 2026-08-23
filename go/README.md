@@ -6,7 +6,7 @@ The Golang SDK for the MathFunctionParser API — an entity-oriented client usin
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Calc(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -264,8 +264,8 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
-| `"type"` |  |
+| `"data"` | Token data |
+| `"type"` | Token type |
 
 Operations: List.
 
@@ -284,8 +284,8 @@ API path: `/v1/resolve`
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
-| `"type"` |  |
+| `"data"` | Token data |
+| `"type"` | Token type |
 
 Operations: List.
 
@@ -310,8 +310,8 @@ Create an instance: `calc := client.Calc(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `string` |  |
-| `type` | `string` |  |
+| `data` | `string` | Token data |
+| `type` | `string` | Token type |
 
 #### Example: List
 
@@ -359,8 +359,8 @@ Create an instance: `tokenize := client.Tokenize(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `string` |  |
-| `type` | `string` |  |
+| `data` | `string` | Token data |
+| `type` | `string` | Token type |
 
 #### Example: List
 

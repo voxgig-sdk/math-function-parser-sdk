@@ -100,8 +100,8 @@ $calc = $client->Calc();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `string` | No |  |
-| `type` | `string` | No |  |
+| `data` | `string` | No | Token data |
+| `type` | `string` | No | Token type |
 
 ### Operations
 
@@ -199,8 +199,8 @@ $tokenize = $client->Tokenize();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `string` | No |  |
-| `type` | `string` | No |  |
+| `data` | `string` | No | Token data |
+| `type` | `string` | No | Token type |
 
 ### Operations
 
