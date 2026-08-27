@@ -28,6 +28,7 @@ module MathFunctionParserConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
