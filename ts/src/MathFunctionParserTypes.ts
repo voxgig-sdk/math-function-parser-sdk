@@ -11,14 +11,16 @@ export interface Calc {
 }
 
 export interface CalcListMatch {
-  data?: string
-  type?: string
+  expression: string
+  x?: string
 }
 
 export interface Resolve {
 }
 
 export interface ResolveLoadMatch {
+  expression: string
+  x?: string
 }
 
 export interface Tokenize {
@@ -27,7 +29,7 @@ export interface Tokenize {
 }
 
 export interface TokenizeListMatch {
-  data?: string
-  type?: string
+  expression: string
+  x?: string
 }
 

@@ -311,7 +311,7 @@ Create an instance: `resolve = client.Resolve`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Resolve record (raises on error).
-resolve = client.Resolve.load()
+resolve = client.Resolve.load({ "expression" => "expression" })
 ```
 
 
@@ -338,6 +338,29 @@ Create an instance: `tokenize = client.Tokenize`
 # list returns an Array of Tokenize records (raises on error).
 tokenizes = client.Tokenize.list
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

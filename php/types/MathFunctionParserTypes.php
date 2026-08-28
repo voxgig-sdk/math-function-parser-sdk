@@ -22,8 +22,8 @@ class Calc
 /** Request payload for Calc#list. */
 class CalcListMatch
 {
-    public ?string $data = null;
-    public ?string $type = null;
+    public string $expression;
+    public ?string $x = null;
 }
 
 /** Resolve entity data model. */
@@ -34,6 +34,8 @@ class Resolve
 /** Request payload for Resolve#load. */
 class ResolveLoadMatch
 {
+    public string $expression;
+    public ?string $x = null;
 }
 
 /** Tokenize entity data model. */
@@ -46,7 +48,7 @@ class Tokenize
 /** Request payload for Tokenize#list. */
 class TokenizeListMatch
 {
-    public ?string $data = null;
-    public ?string $type = null;
+    public string $expression;
+    public ?string $x = null;
 }
 

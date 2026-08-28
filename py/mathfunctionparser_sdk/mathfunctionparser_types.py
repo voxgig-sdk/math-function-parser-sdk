@@ -21,17 +21,24 @@ class Calc(TypedDict, total=False):
     type: str
 
 
-class CalcListMatch(TypedDict, total=False):
-    data: str
-    type: str
+class CalcListMatchRequired(TypedDict):
+    expression: str
+
+
+class CalcListMatch(CalcListMatchRequired, total=False):
+    x: str
 
 
 class Resolve(TypedDict):
     pass
 
 
-class ResolveLoadMatch(TypedDict):
-    pass
+class ResolveLoadMatchRequired(TypedDict):
+    expression: str
+
+
+class ResolveLoadMatch(ResolveLoadMatchRequired, total=False):
+    x: str
 
 
 class Tokenize(TypedDict, total=False):
@@ -39,6 +46,9 @@ class Tokenize(TypedDict, total=False):
     type: str
 
 
-class TokenizeListMatch(TypedDict, total=False):
-    data: str
-    type: str
+class TokenizeListMatchRequired(TypedDict):
+    expression: str
+
+
+class TokenizeListMatch(TokenizeListMatchRequired, total=False):
+    x: str

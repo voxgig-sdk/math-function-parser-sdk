@@ -40,7 +40,7 @@ resolves to entities, not raw records. Iterate them directly, and call
 `.data()` on one for the record it holds:
 
 ```ts
-const calcs = await client.Calc().list()
+const calcs = await client.Calc().list({ expression: "example" })
 
 for (const calc of calcs) {
   console.log(calc)
@@ -343,7 +343,7 @@ Create an instance: `const calc = client.Calc()`
 #### Example: List
 
 ```ts
-const calcs = await client.Calc().list()
+const calcs = await client.Calc().list({ expression: "example" })
 ```
 
 
@@ -360,7 +360,7 @@ Create an instance: `const resolve = client.Resolve()`
 #### Example: Load
 
 ```ts
-const resolve = await client.Resolve().load()
+const resolve = await client.Resolve().load({ expression: 'expression' })
 ```
 
 
@@ -384,8 +384,31 @@ Create an instance: `const tokenize = client.Tokenize()`
 #### Example: List
 
 ```ts
-const tokenizes = await client.Tokenize().list()
+const tokenizes = await client.Tokenize().list({ expression: "example" })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

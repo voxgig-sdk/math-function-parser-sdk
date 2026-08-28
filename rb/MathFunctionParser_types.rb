@@ -23,14 +23,14 @@ Calc = Struct.new(
 
 # Request payload for Calc#list.
 #
-# @!attribute [rw] data
-#   @return [String, nil]
+# @!attribute [rw] expression
+#   @return [String]
 #
-# @!attribute [rw] type
+# @!attribute [rw] x
 #   @return [String, nil]
 CalcListMatch = Struct.new(
-  :data,
-  :type,
+  :expression,
+  :x,
   keyword_init: true
 )
 
@@ -39,8 +39,17 @@ class Resolve
 end
 
 # Request payload for Resolve#load.
-class ResolveLoadMatch
-end
+#
+# @!attribute [rw] expression
+#   @return [String]
+#
+# @!attribute [rw] x
+#   @return [String, nil]
+ResolveLoadMatch = Struct.new(
+  :expression,
+  :x,
+  keyword_init: true
+)
 
 # Tokenize entity data model.
 #
@@ -57,14 +66,14 @@ Tokenize = Struct.new(
 
 # Request payload for Tokenize#list.
 #
-# @!attribute [rw] data
-#   @return [String, nil]
+# @!attribute [rw] expression
+#   @return [String]
 #
-# @!attribute [rw] type
+# @!attribute [rw] x
 #   @return [String, nil]
 TokenizeListMatch = Struct.new(
-  :data,
-  :type,
+  :expression,
+  :x,
   keyword_init: true
 )
 

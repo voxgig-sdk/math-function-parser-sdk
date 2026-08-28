@@ -20,8 +20,8 @@ type Calc struct {
 
 // CalcListMatch is the typed request payload for Calc.ListTyped.
 type CalcListMatch struct {
-	Data *string `json:"data,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Expression string `json:"expression"`
+	X *string `json:"x,omitempty"`
 }
 
 // Resolve is the typed data model for the resolve entity.
@@ -30,6 +30,8 @@ type Resolve struct {
 
 // ResolveLoadMatch is the typed request payload for Resolve.LoadTyped.
 type ResolveLoadMatch struct {
+	Expression string `json:"expression"`
+	X *string `json:"x,omitempty"`
 }
 
 // Tokenize is the typed data model for the tokenize entity.
@@ -40,8 +42,8 @@ type Tokenize struct {
 
 // TokenizeListMatch is the typed request payload for Tokenize.ListTyped.
 type TokenizeListMatch struct {
-	Data *string `json:"data,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Expression string `json:"expression"`
+	X *string `json:"x,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

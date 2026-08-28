@@ -11,20 +11,22 @@
 ---@field type? string
 
 ---@class CalcListMatch
----@field data? string
----@field type? string
+---@field expression string
+---@field x? string
 
 ---@class Resolve
 
 ---@class ResolveLoadMatch
+---@field expression string
+---@field x? string
 
 ---@class Tokenize
 ---@field data? string
 ---@field type? string
 
 ---@class TokenizeListMatch
----@field data? string
----@field type? string
+---@field expression string
+---@field x? string
 
 local M = {}
 
