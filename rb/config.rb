@@ -83,9 +83,13 @@ module MathFunctionParserConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/calc",
-                  "parts" => [
-                    "v1",
-                    "calc",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "calc",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -97,6 +101,10 @@ module MathFunctionParserConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "calc",
+                  ],
                 },
               ],
             },
@@ -134,9 +142,13 @@ module MathFunctionParserConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/resolve",
-                  "parts" => [
-                    "v1",
-                    "resolve",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "resolve",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -148,6 +160,10 @@ module MathFunctionParserConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "resolve",
+                  ],
                 },
               ],
             },
@@ -196,9 +212,13 @@ module MathFunctionParserConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/ast",
-                  "parts" => [
-                    "v1",
-                    "ast",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "ast",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -210,6 +230,10 @@ module MathFunctionParserConfig
                     "req" => "`reqdata`",
                     "res" => "`body.tokens`",
                   },
+                  "parts" => [
+                    "v1",
+                    "ast",
+                  ],
                 },
                 {
                   "args" => {
@@ -232,9 +256,13 @@ module MathFunctionParserConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/tokenize",
-                  "parts" => [
-                    "v1",
-                    "tokenize",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "tokenize",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -246,6 +274,10 @@ module MathFunctionParserConfig
                     "req" => "`reqdata`",
                     "res" => "`body.tokens`",
                   },
+                  "parts" => [
+                    "v1",
+                    "tokenize",
+                  ],
                 },
               ],
             },

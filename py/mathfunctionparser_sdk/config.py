@@ -1,6 +1,14 @@
 # MathFunctionParser SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -92,9 +100,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/calc",
-                "parts": [
-                  "v1",
-                  "calc",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "calc",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -106,6 +118,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v1",
+                  "calc",
+                ],
               },
             ],
           },
@@ -143,9 +159,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/resolve",
-                "parts": [
-                  "v1",
-                  "resolve",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "resolve",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -157,6 +177,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v1",
+                  "resolve",
+                ],
               },
             ],
           },
@@ -205,9 +229,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/ast",
-                "parts": [
-                  "v1",
-                  "ast",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "ast",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -219,6 +247,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.tokens`",
                 },
+                "parts": [
+                  "v1",
+                  "ast",
+                ],
               },
               {
                 "args": {
@@ -241,9 +273,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/tokenize",
-                "parts": [
-                  "v1",
-                  "tokenize",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "tokenize",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -255,6 +291,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.tokens`",
                 },
+                "parts": [
+                  "v1",
+                  "tokenize",
+                ],
               },
             ],
           },

@@ -97,9 +97,13 @@ class MathFunctionParserConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/calc',
-                  'parts' => [
-                    'v1',
-                    'calc',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'calc',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -110,6 +114,10 @@ class MathFunctionParserConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'calc',
                   ],
                 ],
               ],
@@ -148,9 +156,13 @@ class MathFunctionParserConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/resolve',
-                  'parts' => [
-                    'v1',
-                    'resolve',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'resolve',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -161,6 +173,10 @@ class MathFunctionParserConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'resolve',
                   ],
                 ],
               ],
@@ -210,9 +226,13 @@ class MathFunctionParserConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/ast',
-                  'parts' => [
-                    'v1',
-                    'ast',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'ast',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -223,6 +243,10 @@ class MathFunctionParserConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.tokens`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'ast',
                   ],
                 ],
                 [
@@ -246,9 +270,13 @@ class MathFunctionParserConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/tokenize',
-                  'parts' => [
-                    'v1',
-                    'tokenize',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'tokenize',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -259,6 +287,10 @@ class MathFunctionParserConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.tokens`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'tokenize',
                   ],
                 ],
               ],

@@ -45,9 +45,13 @@ main: kit: entity: tokenize: {
           }
           method: "GET"
           orig: "/v1/ast"
-          parts: [
-            "v1"
-            "ast"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "ast"
+            }
           ]
           select: {
             exist: [
@@ -81,9 +85,13 @@ main: kit: entity: tokenize: {
           }
           method: "GET"
           orig: "/v1/tokenize"
-          parts: [
-            "v1"
-            "tokenize"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "tokenize"
+            }
           ]
           select: {
             exist: [

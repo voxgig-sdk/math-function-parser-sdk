@@ -71,9 +71,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/calc",
-                ["parts"] = {
-                  "v1",
-                  "calc",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "calc",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -84,6 +88,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "calc",
                 },
               },
             },
@@ -122,9 +130,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/resolve",
-                ["parts"] = {
-                  "v1",
-                  "resolve",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "resolve",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -135,6 +147,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "resolve",
                 },
               },
             },
@@ -184,9 +200,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/ast",
-                ["parts"] = {
-                  "v1",
-                  "ast",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "ast",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -197,6 +217,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.tokens`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "ast",
                 },
               },
               {
@@ -220,9 +244,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/tokenize",
-                ["parts"] = {
-                  "v1",
-                  "tokenize",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v1",
+                  },
+                  {
+                    ["lit"] = "tokenize",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -233,6 +261,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.tokens`",
+                },
+                ["parts"] = {
+                  "v1",
+                  "tokenize",
                 },
               },
             },

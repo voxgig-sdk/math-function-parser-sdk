@@ -30,9 +30,13 @@ main: kit: entity: resolve: {
           }
           method: "GET"
           orig: "/v1/resolve"
-          parts: [
-            "v1"
-            "resolve"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "resolve"
+            }
           ]
           select: {
             exist: [

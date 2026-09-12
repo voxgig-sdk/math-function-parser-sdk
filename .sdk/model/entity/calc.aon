@@ -45,9 +45,13 @@ main: kit: entity: calc: {
           }
           method: "GET"
           orig: "/v1/calc"
-          parts: [
-            "v1"
-            "calc"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "calc"
+            }
           ]
           select: {
             exist: [
