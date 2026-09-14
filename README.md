@@ -105,7 +105,7 @@ local results, err = client:Tokenize():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
+| TypeScript | `@voxgig-sdk/math-function-parser-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
 | Python | `voxgig-sdk-math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
 | PHP | `voxgig-sdk/math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/math-function-parser-sdk/go` | `go get github.com/voxgig-sdk/math-function-parser-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Tokenize():list()
 ### TypeScript
 
 ```ts
-import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser'
+import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser-sdk'
 
 const client = new MathFunctionParserSDK()
 

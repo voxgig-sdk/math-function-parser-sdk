@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser'
+import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser-sdk'
 
 const client = new MathFunctionParserSDK()
 ```
@@ -470,7 +470,7 @@ math-function-parser/
 Import the SDK from the package root:
 
 ```ts
-import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser'
+import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser-sdk'
 ```
 
 ### Entity state
