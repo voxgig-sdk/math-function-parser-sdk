@@ -28,6 +28,12 @@ main: kit: entity: resolve: {
               }
             ]
           }
+          contract: {
+            id: "GET /v1/resolve"
+            json: "{\"operationId\":\"resolve\",\"parameters\":[{\"deprecated\":false,\"description\":\"The math function to parse and resolve, e.g. 3+4\",\"in\":\"query\",\"name\":\"expression\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"deprecated\":false,\"description\":\"Variable x\",\"in\":\"query\",\"name\":\"x\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"format\":\"double\",\"type\":\"number\"}}},\"description\":\"OK\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v1/resolve"
           segments: [

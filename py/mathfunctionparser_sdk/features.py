@@ -1,12 +1,18 @@
 # MathFunctionParser SDK feature factory
 
 from mathfunctionparser_sdk.feature.base_feature import MathFunctionParserBaseFeature
+from mathfunctionparser_sdk.feature.ratelimit_feature import MathFunctionParserRatelimitFeature
+from mathfunctionparser_sdk.feature.retry_feature import MathFunctionParserRetryFeature
 from mathfunctionparser_sdk.feature.test_feature import MathFunctionParserTestFeature
+from mathfunctionparser_sdk.feature.timeout_feature import MathFunctionParserTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: MathFunctionParserBaseFeature(),
+    "ratelimit": lambda: MathFunctionParserRatelimitFeature(),
+    "retry": lambda: MathFunctionParserRetryFeature(),
     "test": lambda: MathFunctionParserTestFeature(),
+    "timeout": lambda: MathFunctionParserTimeoutFeature(),
 }
 
 

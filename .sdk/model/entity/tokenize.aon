@@ -43,6 +43,12 @@ main: kit: entity: tokenize: {
               }
             ]
           }
+          contract: {
+            id: "GET /v1/ast"
+            json: "{\"operationId\":\"ast\",\"parameters\":[{\"deprecated\":false,\"description\":\"The math function to parse, e.g. 3+4\",\"in\":\"query\",\"name\":\"expression\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"deprecated\":false,\"description\":\"Variable x\",\"in\":\"query\",\"name\":\"x\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"tokens\":{\"description\":\"Tokenized input expression\",\"items\":{\"properties\":{\"data\":{\"description\":\"Token data\",\"type\":\"string\"},\"type\":{\"description\":\"Token type\",\"type\":\"string\"}},\"required\":[],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[],\"type\":\"object\"}}},\"description\":\"OK\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v1/ast"
           segments: [
@@ -82,6 +88,12 @@ main: kit: entity: tokenize: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /v1/tokenize"
+            json: "{\"operationId\":\"tokenize\",\"parameters\":[{\"deprecated\":false,\"description\":\"The math function to parse and resolve, e.g. 3+4\",\"in\":\"query\",\"name\":\"expression\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"deprecated\":false,\"description\":\"Variable x\",\"in\":\"query\",\"name\":\"x\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"tokens\":{\"description\":\"Tokenized input expression\",\"items\":{\"properties\":{\"data\":{\"description\":\"Token data\",\"type\":\"string\"},\"type\":{\"description\":\"Token type\",\"type\":\"string\"}},\"required\":[],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[],\"type\":\"object\"}}},\"description\":\"OK\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/v1/tokenize"

@@ -4,7 +4,10 @@ declare(strict_types=1);
 // MathFunctionParser SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class MathFunctionParserFeatures
@@ -14,8 +17,14 @@ class MathFunctionParserFeatures
         switch ($name) {
             case "base":
                 return new MathFunctionParserBaseFeature();
+            case "ratelimit":
+                return new MathFunctionParserRatelimitFeature();
+            case "retry":
+                return new MathFunctionParserRetryFeature();
             case "test":
                 return new MathFunctionParserTestFeature();
+            case "timeout":
+                return new MathFunctionParserTimeoutFeature();
             default:
                 return new MathFunctionParserBaseFeature();
         }
@@ -31,7 +40,10 @@ class MathFunctionParserFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

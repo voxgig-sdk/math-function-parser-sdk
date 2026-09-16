@@ -22,5 +22,133 @@
         "type": "s51"
       }
     }
+  },
+  "requests": {
+    "GET /v1/ast": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "ast",
+        "parameters": [
+          {
+            "deprecated": false,
+            "description": "The math function to parse, e.g. 3+4",
+            "in": "query",
+            "name": "expression",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "deprecated": false,
+            "description": "Variable x",
+            "in": "query",
+            "name": "x",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "tokens": {
+                      "description": "Tokenized input expression",
+                      "items": {
+                        "properties": {
+                          "data": {
+                            "description": "Token data",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "Token type",
+                            "type": "string"
+                          }
+                        },
+                        "required": [],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /v1/tokenize": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "tokenize",
+        "parameters": [
+          {
+            "deprecated": false,
+            "description": "The math function to parse and resolve, e.g. 3+4",
+            "in": "query",
+            "name": "expression",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "deprecated": false,
+            "description": "Variable x",
+            "in": "query",
+            "name": "x",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "tokens": {
+                      "description": "Tokenized input expression",
+                      "items": {
+                        "properties": {
+                          "data": {
+                            "description": "Token data",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "Token type",
+                            "type": "string"
+                          }
+                        },
+                        "required": [],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }
