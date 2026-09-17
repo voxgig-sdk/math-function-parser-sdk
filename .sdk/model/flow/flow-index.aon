@@ -1,5 +1,5 @@
 # Flows
 
-@"BasicCalcFlow.aon"
-@"BasicResolveFlow.aon"
-@"BasicTokenizeFlow.aon"
+@"./BasicCalcFlow.aon"
+@"./BasicResolveFlow.aon"
+@"./BasicTokenizeFlow.aon"

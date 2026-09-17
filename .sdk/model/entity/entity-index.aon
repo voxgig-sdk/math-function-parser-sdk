@@ -1,5 +1,5 @@
 # Entity Models
 
-@"calc.aon"
-@"resolve.aon"
-@"tokenize.aon"
+@"./calc.aon"
+@"./resolve.aon"
+@"./tokenize.aon"

@@ -105,12 +105,12 @@ local results, err = client:Tokenize():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/math-function-parser-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
-| Python | `voxgig-sdk-math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
-| PHP | `voxgig-sdk/math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
+| TypeScript | `@voxgig-sdk/math-function-parser-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/tags) |
+| Python | `voxgig-sdk-math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/tags) |
+| PHP | `voxgig-sdk/math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/math-function-parser-sdk/go` | `go get github.com/voxgig-sdk/math-function-parser-sdk/go@latest` |
-| Ruby | `voxgig-sdk-math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
-| Lua | `voxgig-sdk-math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/releases) |
+| Ruby | `voxgig-sdk-math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/tags) |
+| Lua | `voxgig-sdk-math-function-parser` | publish pending — [install from git tag](https://github.com/voxgig-sdk/math-function-parser-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/math-function-parser-sdk/go-cli` | `go install github.com/voxgig-sdk/math-function-parser-sdk/go-cli/cmd/math-function-parser@latest` |
 | Go MCP server | `github.com/voxgig-sdk/math-function-parser-sdk/go-mcp` | `go get github.com/voxgig-sdk/math-function-parser-sdk/go-mcp@latest` |
 

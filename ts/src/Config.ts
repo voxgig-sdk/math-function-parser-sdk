@@ -127,15 +127,15 @@ class Config {
 
     entity: {
       
-      calc: {
-      },
-
-      resolve: {
-      },
-
-      tokenize: {
-      },
-
+        calc: {
+        },
+  
+        resolve: {
+        },
+  
+        tokenize: {
+        },
+  
     }
   }
 
