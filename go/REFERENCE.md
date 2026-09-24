@@ -47,6 +47,10 @@ client := sdk.TestSDK(testopts, sdkopts)
 
 ### Instance Methods
 
+#### `Ast(data map[string]any) MathFunctionParserEntity`
+
+Create a new `Ast` entity instance. Pass `nil` for no initial data.
+
 #### `Calc(data map[string]any) MathFunctionParserEntity`
 
 Create a new `Calc` entity instance. Pass `nil` for no initial data.
@@ -91,6 +95,58 @@ Prepare a fetch definition without sending the request. Accepts the
 same parameters as `Direct()`.
 
 **Returns:** `(map[string]any, error)`
+
+
+---
+
+## AstEntity
+
+```go
+ast := client.Ast(nil)
+fmt.Println(ast.GetName()) // "ast"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `string` | No | Token data |
+| `type` | `string` | No | Token type |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.Ast(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `AstEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
 
 
 ---

@@ -14,20 +14,20 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
 ## Entities, not endpoints
 
-This SDK exposes the API as a small set of **semantic entities** — Calc, Resolve and Tokenize — that you
+This SDK exposes the API as a small set of **semantic entities** — Ast, Calc, Resolve and Tokenize — that you
 call directly, instead of assembling URL paths and query strings. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`list`, `load`):
 
 ```ts
 const client = new MathFunctionParserSDK()
-const items = await client.Calc().list({ expression: "example" })
+const items = await client.Ast().list({ expression: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -46,23 +46,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = MathFunctionParserSDK.test({
   entity: {
-    tokenize: {
+    calc: {
       test01: { id: 'test01' },
     },
   },
 })
-const tokenizes = await client.Tokenize().list()
-// tokenizes is an array of Tokenize entities, populated with mock data
-// — call tokenizes[0].data() for the record itself
-console.log(tokenizes)
+const calcs = await client.Calc().list()
+// calcs is an array of Calc entities, populated with mock data
+// — call calcs[0].data() for the record itself
+console.log(calcs)
 ```
 
 ### Python
 
 ```python
 client = MathFunctionParserSDK.test()
-tokenizes = client.Tokenize().list()
-print(tokenizes)
+calcs = client.Calc().list()
+print(calcs)
 ```
 
 ### PHP
@@ -70,16 +70,16 @@ print(tokenizes)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = MathFunctionParserSDK::test([
-    "entity" => ["tokenize" => ["test01" => []]],
+    "entity" => ["calc" => ["test01" => []]],
 ]);
-$tokenizes = $client->Tokenize()->list();
+$calcs = $client->Calc()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Tokenize(nil).List(
+result, err := client.Calc(nil).List(
     nil, nil,
 )
 ```
@@ -89,16 +89,16 @@ result, err := client.Tokenize(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = MathFunctionParserSDK.test({
-  "entity" => { "tokenize" => { "test01" => {} } },
+  "entity" => { "calc" => { "test01" => {} } },
 })
-tokenizes = client.Tokenize.list()
+calcs = client.Calc.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Tokenize():list()
+local results, err = client:Calc():list()
 ```
 
 ## Packages
@@ -123,10 +123,10 @@ import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser-sdk'
 
 const client = new MathFunctionParserSDK()
 
-// List all calcs (returns CalcEntity[] — .data() for the record)
-const calcs = await client.Calc().list({ expression: "example" })
-for (const calc of calcs) {
-  console.log(calc)
+// List all asts (returns AstEntity[] — .data() for the record)
+const asts = await client.Ast().list({ expression: "example" })
+for (const ast of asts) {
+  console.log(ast)
 }
 ```
 
@@ -164,13 +164,14 @@ Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
 
 ## Entities
 
-The API exposes 3 entities:
+The API exposes 4 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
+| **Ast** | The Ast entity (list). | `/v1/ast` |
 | **Calc** | The Calc entity (list). | `/v1/calc` |
 | **Resolve** | The Resolve entity (load). | `/v1/resolve` |
-| **Tokenize** | The Tokenize entity (list). | `/v1/ast` |
+| **Tokenize** | The Tokenize entity (list). | `/v1/tokenize` |
 
 The operations available across these entities are **load**, **list** — see each entity's
 own list above for exactly which it supports.
@@ -184,10 +185,10 @@ from mathfunctionparser_sdk import MathFunctionParserSDK
 
 client = MathFunctionParserSDK()
 
-# List all calcs (returns a list, raises on error)
-calcs = client.Calc().list({"expression": "example"})
-for calc in calcs:
-    print(calc)
+# List all asts (returns a list, raises on error)
+asts = client.Ast().list({"expression": "example"})
+for ast in asts:
+    print(ast)
 ```
 
 ### PHP
@@ -198,9 +199,9 @@ require_once 'mathfunctionparser_sdk.php';
 
 $client = new MathFunctionParserSDK();
 
-// List all calcs (returns an array; throws on error)
-$calcs = $client->Calc()->list();
-print_r(array_map(fn($item) => $item->data_get(), $calcs));
+// List all asts (returns an array; throws on error)
+$asts = $client->Ast()->list();
+print_r(array_map(fn($item) => $item->data_get(), $asts));
 ```
 
 ### Golang
@@ -210,12 +211,12 @@ import sdk "github.com/voxgig-sdk/math-function-parser-sdk/go"
 
 client := sdk.New()
 
-// List all calcs
-calcs, err := client.Calc(nil).List(nil, nil)
+// List all asts
+asts, err := client.Ast(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(calcs)
+fmt.Println(asts)
 ```
 
 ### Ruby
@@ -225,9 +226,9 @@ require_relative "MathFunctionParser_sdk"
 
 client = MathFunctionParserSDK.new
 
-# List all calcs (returns an Array; raises on error)
-calcs = client.Calc.list
-puts calcs
+# List all asts (returns an Array; raises on error)
+asts = client.Ast.list
+puts asts
 ```
 
 ### Lua
@@ -237,9 +238,9 @@ local sdk = require("math-function-parser_sdk")
 
 local client = sdk.new()
 
--- List all calcs
-local calcs, err = client:Calc():list()
-print(calcs)
+-- List all asts
+local asts, err = client:Ast():list()
+print(asts)
 ```
 
 ## Direct and prepare

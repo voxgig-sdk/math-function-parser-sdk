@@ -19,15 +19,15 @@ make build
 export MATH_FUNCTION_PARSER_APIKEY=sk_live_xxx
 
 # 4. Each command line is ONE boru expression, run against the API:
+./math-function-parser-cli list ast
 ./math-function-parser-cli list calc
-./math-function-parser-cli list resolve
 
 # 5. Override the API base URL for a single call
-MATH_FUNCTION_PARSER_BASE=https://api.example.com ./math-function-parser-cli list calc
+MATH_FUNCTION_PARSER_BASE=https://api.example.com ./math-function-parser-cli list ast
 
 # 6. No arguments -> interactive REPL
 ./math-function-parser-cli
-math-function-parser> list calc
+math-function-parser> list ast
 math-function-parser> /quit
 ```
 
@@ -53,7 +53,7 @@ math-function-parser> /quit
    arguments to open the REPL):
 
    ```sh
-   ./dist/*/math-function-parser-cli list calc
+   ./dist/*/math-function-parser-cli list ast
    ```
 
 4. **Go interactive.** Run the binary with no arguments to open the REPL, then
@@ -66,7 +66,7 @@ That is the whole loop: *build → set key → evaluate boru expressions*.
 ### List the records of an entity
 
 ```sh
-./math-function-parser-cli list calc
+./math-function-parser-cli list ast
 ```
 
 `list <entity>` returns the first page of records. `<entity>` is a bareword —
@@ -79,7 +79,7 @@ Configuration is read from the environment — nothing is written to disk:
 ```sh
 export MATH_FUNCTION_PARSER_APIKEY=sk_live_xxx            # API key
 export MATH_FUNCTION_PARSER_BASE=https://api.example.com  # optional: override the API base URL
-./math-function-parser-cli list calc
+./math-function-parser-cli list ast
 ```
 
 Both are injectable by a secrets vault, so the key never has to be typed inline.
@@ -91,7 +91,7 @@ evaluated as its own boru expression:
 
 ```text
 $ ./math-function-parser-cli
-math-function-parser> list calc
+math-function-parser> list ast
 math-function-parser> /help
 math-function-parser> /quit
 ```
@@ -106,7 +106,7 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 ### Discover the available entities
 
 `/help` in the REPL prints the full entity list, or see [Entities](#entities)
-below — this SDK exposes 3 entities.
+below — this SDK exposes 4 entities.
 
 ## Reference
 
@@ -119,7 +119,7 @@ The CLI registers these boru words, each bound to the SDK:
 | `list`   | `list <entity>` · `list <query> <entity>`     | First page of records          |
 | `load`   | `load <entity>` · `load <query> <entity>`     | A single record                |
 
-- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `calc`).
+- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `ast`).
 - `<query>` is either a **Map** (`{id:1}`) or a **Scalar** (`1`, treated as
   `{id:1}`). A scalar is always wrapped as `{id:<value>}`.
 
@@ -160,9 +160,9 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 ### Entities
 
-The 3 entities this SDK exposes (any is valid as `<entity>`):
+The 4 entities this SDK exposes (any is valid as `<entity>`):
 
-calc resolve tokenize
+ast calc resolve tokenize
 
 ## Explanation
 

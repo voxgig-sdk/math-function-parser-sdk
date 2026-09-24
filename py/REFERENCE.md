@@ -41,6 +41,10 @@ client = MathFunctionParserSDK.test()
 
 ### Instance Methods
 
+#### `Ast(data=None)`
+
+Create a new `AstEntity` instance. Pass `None` for no initial data.
+
 #### `Calc(data=None)`
 
 Create a new `CalcEntity` instance. Pass `None` for no initial data.
@@ -81,6 +85,60 @@ Make a direct HTTP request to any API endpoint. Returns a result `dict` with `ok
 #### `prepare(fetchargs=None) -> dict`
 
 Prepare a fetch definition without sending. Returns the `fetchdef` and raises on error.
+
+
+---
+
+## AstEntity
+
+```python
+ast = client.Ast()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `str` | No | Token data |
+| `type` | `str` | No | Token type |
+
+### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.Ast().list({"expression": "example"})
+for ast in results:
+    print(ast)
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `AstEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
 
 
 ---

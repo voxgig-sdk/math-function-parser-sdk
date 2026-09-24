@@ -21,7 +21,7 @@ describe("TokenizeDirect", function()
 
 
     local result, err = client:direct({
-      path = "v1/ast",
+      path = "v1/tokenize",
       method = "GET",
       params = {},
     })

@@ -349,6 +349,20 @@ end
 
 
 
+-- Idiomatic facade: client:Ast():list() / client:Ast():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MathFunctionParserSDK:Ast(data)
+  local EntityMod = require("entity.ast_entity")
+  if data == nil then
+    if self._ast == nil then
+      self._ast = EntityMod.new(self, nil)
+    end
+    return self._ast
+  end
+  return EntityMod.new(self, data)
+end
+
+
 -- Idiomatic facade: client:Calc():list() / client:Calc():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function MathFunctionParserSDK:Calc(data)

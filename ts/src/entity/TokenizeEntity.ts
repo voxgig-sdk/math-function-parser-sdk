@@ -19,7 +19,6 @@ import type {
   TokenizeListMatch,
 } from '../MathFunctionParserTypes'
 
-// TODO: needs Entity superclass
 class TokenizeEntity extends MathFunctionParserEntityBase<Tokenize> {
 
   constructor(client: MathFunctionParserSDK, entopts: any) {

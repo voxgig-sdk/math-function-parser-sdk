@@ -4,7 +4,7 @@
 
 The Lua SDK for the MathFunctionParser API — an entity-oriented client using Lua conventions.
 
-It exposes the API as capitalised, semantic **Entities** — e.g. `client:Calc()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Ast()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
@@ -33,17 +33,17 @@ local sdk = require("math-function-parser_sdk")
 local client = sdk.new()
 ```
 
-### 2. List calc records
+### 2. List ast records
 
 Entity operations return `(value, err)`. For `list`, `value` is the
 array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local calcs, err = client:Calc():list()
+local asts, err = client:Ast():list()
 if err then error(err) end
 
-for _, item in ipairs(calcs) do
-  print(item["data"])
+for _, item in ipairs(asts) do
+  print(item)
 end
 ```
 
@@ -54,7 +54,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local tokenizes, err = client:Tokenize():list()
+local calcs, err = client:Calc():list()
 if err then error(err) end
 ```
 
@@ -112,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Tokenize():list()
+local result, err = client:Calc():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -191,6 +191,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
+| `Ast` | `(data) -> AstEntity` | Create an Ast entity instance. |
 | `Calc` | `(data) -> CalcEntity` | Create a Calc entity instance. |
 | `Resolve` | `(data) -> ResolveEntity` | Create a Resolve entity instance. |
 | `Tokenize` | `(data) -> TokenizeEntity` | Create a Tokenize entity instance. |
@@ -231,6 +232,17 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 ### Entities
 
+#### Ast
+
+| Field | Description |
+| --- | --- |
+| `data` | Token data |
+| `type` | Token type |
+
+Operations: List.
+
+API path: `/v1/ast`
+
 #### Calc
 
 | Field | Description |
@@ -260,11 +272,35 @@ API path: `/v1/resolve`
 
 Operations: List.
 
-API path: `/v1/ast`
+API path: `/v1/tokenize`
 
 
 
 ## Entities
+
+
+### Ast
+
+Create an instance: `local ast = client:Ast(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `string` | Token data |
+| `type` | `string` | Token type |
+
+#### Example: List
+
+```lua
+local asts, err = client:Ast():list()
+```
 
 
 ### Calc
@@ -493,11 +529,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local tokenize = client:Tokenize()
-tokenize:list()
+local calc = client:Calc()
+calc:list()
 
--- tokenize:data_get() now returns the tokenize data from the last list
--- tokenize:match_get() returns the last match criteria
+-- calc:data_get() now returns the calc data from the last list
+-- calc:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

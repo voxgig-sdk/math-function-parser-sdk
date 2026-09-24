@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CalcEntity = void 0;
 const MathFunctionParserEntityBase_1 = require("../MathFunctionParserEntityBase");
-// TODO: needs Entity superclass
 class CalcEntity extends MathFunctionParserEntityBase_1.MathFunctionParserEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

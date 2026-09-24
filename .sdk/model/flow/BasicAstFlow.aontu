@@ -1,0 +1,22 @@
+# BasicAstFlow
+
+main: kit: flow: BasicAstFlow:
+{
+  entity: "ast",
+  kind: "basic",
+  name: "BasicAstFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "ast_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAstFlow"
+}

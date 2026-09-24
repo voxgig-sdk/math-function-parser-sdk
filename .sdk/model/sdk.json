@@ -24,28 +24,182 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
+        "ast": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": false,
+              "sh": "Token data",
+              "t": "`$STRING`"
+            },
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "sh": "Token type",
+              "t": "`$STRING`"
+            }
+          },
+          "name": "ast",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/ast",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "expression",
+                        "or": "expression",
+                        "r": true,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "x",
+                        "or": "x",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/ast",
+                  "q": {
+                    "exist": [
+                      "expression",
+                      "x"
+                    ]
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "ast"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.tokens`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
         "calc": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "data",
-              "req": false,
-              "short": "Token data",
-              "type": "`$STRING`"
+          "fields": {
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": false,
+              "sh": "Token data",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "short": "Token type",
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "sh": "Token type",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "calc",
           "op": {
             "list": {
@@ -53,37 +207,43 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/calc",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "expression",
-                        "orig": "expression",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "expression",
+                        "or": "expression",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "x",
-                        "orig": "x",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "x",
+                        "or": "x",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/calc",
-                    "json": "{\"operationId\":\"calc\",\"parameters\":[{\"deprecated\":false,\"description\":\"The math function to parse and resolve, e.g. 3+4\",\"in\":\"query\",\"name\":\"expression\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"deprecated\":false,\"description\":\"Variable x\",\"in\":\"query\",\"name\":\"x\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"ast\":{\"description\":\"Abstract Syntax Tree for the parsed input expression\",\"properties\":{\"rootExpression\":{\"additionalProperties\":{\"type\":\"Any\"},\"description\":\"Abstract Syntax Tree for the parsed input expression\",\"type\":\"object\"}},\"required\":[],\"type\":\"object\"},\"parsedExpression\":{\"description\":\"An internal representation of the parsed input expression\",\"type\":\"string\"},\"processingTimeInMicros\":{\"description\":\"Internal processing time in microseconds\",\"maximum\":2147483647,\"minimum\":-2147483648,\"type\":\"integer\"},\"result\":{\"description\":\"The result of the input expression\",\"format\":\"double\",\"type\":\"number\"},\"tokens\":{\"description\":\"Tokenized input expression\",\"items\":{\"properties\":{\"data\":{\"description\":\"Token data\",\"type\":\"string\"},\"type\":{\"description\":\"Token type\",\"type\":\"string\"}},\"required\":[],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[],\"type\":\"object\"}}},\"description\":\"OK\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/calc",
+                  "q": {
+                    "exist": [
+                      "expression",
+                      "x"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/calc",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -91,13 +251,7 @@
                       "lit": "calc"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "expression",
-                      "x"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -114,7 +268,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": {},
           "name": "resolve",
           "op": {
             "load": {
@@ -122,37 +276,43 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/resolve",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "expression",
-                        "orig": "expression",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "expression",
+                        "or": "expression",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "x",
-                        "orig": "x",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "x",
+                        "or": "x",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/resolve",
-                    "json": "{\"operationId\":\"resolve\",\"parameters\":[{\"deprecated\":false,\"description\":\"The math function to parse and resolve, e.g. 3+4\",\"in\":\"query\",\"name\":\"expression\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"deprecated\":false,\"description\":\"Variable x\",\"in\":\"query\",\"name\":\"x\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/plain\":{\"schema\":{\"format\":\"double\",\"type\":\"number\"}}},\"description\":\"OK\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/resolve",
+                  "q": {
+                    "exist": [
+                      "expression",
+                      "x"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/resolve",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -160,13 +320,7 @@
                       "lit": "resolve"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "expression",
-                      "x"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -183,22 +337,24 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "data",
-              "req": false,
-              "short": "Token data",
-              "type": "`$STRING`"
+          "fields": {
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": false,
+              "sh": "Token data",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "short": "Token type",
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "sh": "Token type",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "tokenize",
           "op": {
             "list": {
@@ -206,87 +362,43 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /v1/tokenize",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "expression",
-                        "orig": "expression",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "expression",
+                        "or": "expression",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "x",
-                        "orig": "x",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "x",
+                        "or": "x",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /v1/ast",
-                    "json": "{\"operationId\":\"ast\",\"parameters\":[{\"deprecated\":false,\"description\":\"The math function to parse, e.g. 3+4\",\"in\":\"query\",\"name\":\"expression\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"deprecated\":false,\"description\":\"Variable x\",\"in\":\"query\",\"name\":\"x\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"tokens\":{\"description\":\"Tokenized input expression\",\"items\":{\"properties\":{\"data\":{\"description\":\"Token data\",\"type\":\"string\"},\"type\":{\"description\":\"Token type\",\"type\":\"string\"}},\"required\":[],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[],\"type\":\"object\"}}},\"description\":\"OK\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/ast",
-                  "segments": [
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "ast"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/v1/tokenize",
+                  "q": {
                     "exist": [
                       "expression",
                       "x"
                     ]
                   },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body.tokens`"
-                  }
-                },
-                {
-                  "active": true,
-                  "args": {
-                    "query": [
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "expression",
-                        "orig": "expression",
-                        "reqd": true,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "x",
-                        "orig": "x",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "contract": {
-                    "id": "GET /v1/tokenize",
-                    "json": "{\"operationId\":\"tokenize\",\"parameters\":[{\"deprecated\":false,\"description\":\"The math function to parse and resolve, e.g. 3+4\",\"in\":\"query\",\"name\":\"expression\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"deprecated\":false,\"description\":\"Variable x\",\"in\":\"query\",\"name\":\"x\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"tokens\":{\"description\":\"Tokenized input expression\",\"items\":{\"properties\":{\"data\":{\"description\":\"Token data\",\"type\":\"string\"},\"type\":{\"description\":\"Token type\",\"type\":\"string\"}},\"required\":[],\"type\":\"object\"},\"type\":\"array\"}},\"required\":[],\"type\":\"object\"}}},\"description\":\"OK\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/v1/tokenize",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "v1"
                     },
@@ -294,13 +406,7 @@
                       "lit": "tokenize"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "expression",
-                      "x"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.tokens`"
                   }
@@ -720,6 +826,32 @@
         }
       },
       "flow": {
+        "BasicAstFlow": {
+          "active": true,
+          "entity": "ast",
+          "key$": "BasicAstFlow",
+          "kind": "basic",
+          "name": "BasicAstFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "ast_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
         "BasicCalcFlow": {
           "active": true,
           "entity": "calc",
@@ -729,13 +861,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -755,17 +887,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "resolve_ref01",
                 "srcdatavar": "resolve_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -785,13 +917,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {

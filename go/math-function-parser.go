@@ -41,6 +41,9 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
+	core.NewAstEntityFunc = func(client *core.MathFunctionParserSDK, entopts map[string]any) core.MathFunctionParserEntity {
+		return entity.NewAstEntity(client, entopts)
+	}
 	core.NewCalcEntityFunc = func(client *core.MathFunctionParserSDK, entopts map[string]any) core.MathFunctionParserEntity {
 		return entity.NewCalcEntity(client, entopts)
 	}

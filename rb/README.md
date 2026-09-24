@@ -4,7 +4,7 @@
 
 The Ruby SDK for the MathFunctionParser API — an entity-oriented client using idiomatic Ruby conventions.
 
-The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Calc` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Ast` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
 
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
@@ -30,13 +30,13 @@ require_relative "MathFunctionParser_sdk"
 client = MathFunctionParserSDK.new
 ```
 
-### 2. List calc records
+### 2. List ast records
 
 ```ruby
 begin
-  # list returns an Array of Calc records — iterate directly.
-  calcs = client.Calc.list
-  calcs.each do |item|
+  # list returns an Array of Ast records — iterate directly.
+  asts = client.Ast.list
+  asts.each do |item|
     puts "#{item["data"]}"
   end
 rescue => err
@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  tokenizes = client.Tokenize.list()
+  calcs = client.Calc.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -121,8 +121,8 @@ client = MathFunctionParserSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-tokenize = client.Tokenize.list()
-puts tokenize
+calc = client.Calc.list()
+puts calc
 ```
 
 ### Use a custom fetch function
@@ -198,6 +198,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
+| `Ast` | `(data) -> AstEntity` | Create an Ast entity instance. |
 | `Calc` | `(data) -> CalcEntity` | Create a Calc entity instance. |
 | `Resolve` | `(data) -> ResolveEntity` | Create a Resolve entity instance. |
 | `Tokenize` | `(data) -> TokenizeEntity` | Create a Tokenize entity instance. |
@@ -236,6 +237,17 @@ returns a result `Hash` with these keys:
 
 ### Entities
 
+#### Ast
+
+| Field | Description |
+| --- | --- |
+| `data` | Token data |
+| `type` | Token type |
+
+Operations: List.
+
+API path: `/v1/ast`
+
 #### Calc
 
 | Field | Description |
@@ -265,11 +277,36 @@ API path: `/v1/resolve`
 
 Operations: List.
 
-API path: `/v1/ast`
+API path: `/v1/tokenize`
 
 
 
 ## Entities
+
+
+### Ast
+
+Create an instance: `ast = client.Ast`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `String` | Token data |
+| `type` | `String` | Token type |
+
+#### Example: List
+
+```ruby
+# list returns an Array of Ast records (raises on error).
+asts = client.Ast.list
+```
 
 
 ### Calc
@@ -501,11 +538,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-tokenize = client.Tokenize
-tokenize.list()
+calc = client.Calc
+calc.list()
 
-# tokenize.data_get now returns the tokenize data from the last list
-# tokenize.match_get returns the last match criteria
+# calc.data_get now returns the calc data from the last list
+# calc.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

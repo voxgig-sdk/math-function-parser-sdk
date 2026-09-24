@@ -41,6 +41,10 @@ client = MathFunctionParserSDK.test
 
 ### Instance Methods
 
+#### `Ast(data = nil)`
+
+Create a new `Ast` entity instance. Pass `nil` for no initial data.
+
 #### `Calc(data = nil)`
 
 Create a new `Calc` entity instance. Pass `nil` for no initial data.
@@ -87,6 +91,59 @@ Prepare a fetch definition without sending the request. Accepts the
 same parameters as `direct()`. Raises on error.
 
 **Returns:** `Hash` (the fetch definition; raises on error)
+
+
+---
+
+## AstEntity
+
+```ruby
+ast = client.Ast
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `String` | No | Token data |
+| `type` | `String` | No | Token type |
+
+### Operations
+
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+
+```ruby
+results = client.Ast.list
+```
+
+### Common Methods
+
+#### `data_get -> Hash`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get -> Hash`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make -> Entity`
+
+Create a new `AstEntity` instance with the same client and
+options.
+
+#### `get_name -> String`
+
+Return the entity name.
 
 
 ---

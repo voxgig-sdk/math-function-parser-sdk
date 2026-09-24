@@ -289,6 +289,13 @@ class MathFunctionParserSDK
   end
 
 
+  # Canonical facade: client.Ast.list / client.Ast.load({ "id" => ... })
+  def Ast(data = nil)
+    require_relative 'entity/ast_entity'
+    AstEntity.new(self, data)
+  end
+
+
   # Canonical facade: client.Calc.list / client.Calc.load({ "id" => ... })
   def Calc(data = nil)
     require_relative 'entity/calc_entity'

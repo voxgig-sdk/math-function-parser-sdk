@@ -40,6 +40,7 @@ class ReadmeExamplesTest extends TestCase
 
     // Entity accessor (\$client->Name()) => fixture storage key (lowercase name).
     private const ENTITIES = [
+        "Ast" => "ast",
         "Calc" => "calc",
         "Resolve" => "resolve",
         "Tokenize" => "tokenize",

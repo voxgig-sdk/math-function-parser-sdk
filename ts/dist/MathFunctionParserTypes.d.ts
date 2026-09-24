@@ -1,3 +1,11 @@
+export interface Ast {
+    data?: string;
+    type?: string;
+}
+export interface AstListMatch {
+    expression: string;
+    x?: string;
+}
 export interface Calc {
     data?: string;
     type?: string;

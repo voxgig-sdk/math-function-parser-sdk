@@ -83,23 +83,99 @@ func MakeConfig() map[string]any {
 				"content-type": "application/json",
 			},
 			"entity": map[string]any{
+				"ast": map[string]any{},
 				"calc": map[string]any{},
 				"resolve": map[string]any{},
 				"tokenize": map[string]any{},
 			},
 		},
 		"entity": map[string]any{
+			"ast": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "data",
+						"title": "Data",
+						"type": "`$STRING`",
+						"short": "Token data",
+					},
+					map[string]any{
+						"name": "type",
+						"title": "Type",
+						"type": "`$STRING`",
+						"short": "Token type",
+					},
+				},
+				"name": "ast",
+				"op": map[string]any{
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/v1/ast",
+								"segments": []any{
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "ast",
+									},
+								},
+								"parts": []any{
+									"v1",
+									"ast",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.tokens`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "expression",
+											"orig": "expression",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "x",
+											"orig": "x",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"expression",
+										"x",
+									},
+								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
 			"calc": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "data",
-						"short": "Token data",
+						"title": "Data",
 						"type": "`$STRING`",
+						"short": "Token data",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Token type",
+						"title": "Type",
 						"type": "`$STRING`",
+						"short": "Token type",
 					},
 				},
 				"name": "calc",
@@ -109,23 +185,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "expression",
-											"orig": "expression",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "x",
-											"orig": "x",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/calc",
@@ -137,19 +196,37 @@ func MakeConfig() map[string]any {
 										"lit": "calc",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"calc",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "expression",
+											"orig": "expression",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "x",
+											"orig": "x",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"expression",
 										"x",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"v1",
-									"calc",
 								},
 							},
 						},
@@ -168,23 +245,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "expression",
-											"orig": "expression",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "x",
-											"orig": "x",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/resolve",
@@ -196,19 +256,37 @@ func MakeConfig() map[string]any {
 										"lit": "resolve",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"resolve",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "expression",
+											"orig": "expression",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "x",
+											"orig": "x",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"expression",
 										"x",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"v1",
-									"resolve",
 								},
 							},
 						},
@@ -222,13 +300,15 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "data",
-						"short": "Token data",
+						"title": "Data",
 						"type": "`$STRING`",
+						"short": "Token data",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Token type",
+						"title": "Type",
 						"type": "`$STRING`",
+						"short": "Token type",
 					},
 				},
 				"name": "tokenize",
@@ -238,67 +318,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "expression",
-											"orig": "expression",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "x",
-											"orig": "x",
-											"type": "`$STRING`",
-										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/v1/ast",
-								"segments": []any{
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "ast",
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"expression",
-										"x",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.tokens`",
-								},
-								"parts": []any{
-									"v1",
-									"ast",
-								},
-							},
-							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "expression",
-											"orig": "expression",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "x",
-											"orig": "x",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/tokenize",
@@ -310,19 +329,37 @@ func MakeConfig() map[string]any {
 										"lit": "tokenize",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"tokenize",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.tokens`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "expression",
+											"orig": "expression",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "x",
+											"orig": "x",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"expression",
 										"x",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.tokens`",
-								},
-								"parts": []any{
-									"v1",
-									"tokenize",
 								},
 							},
 						},

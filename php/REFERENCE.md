@@ -41,6 +41,10 @@ $client = MathFunctionParserSDK::test();
 
 ### Instance Methods
 
+#### `Ast($data = null)`
+
+Create a new `AstEntity` instance. Pass `null` for no initial data.
+
 #### `Calc($data = null)`
 
 Create a new `CalcEntity` instance. Pass `null` for no initial data.
@@ -86,6 +90,59 @@ hatch: it does **not** throw. It returns a result array
 
 Prepare a fetch definition without sending the request. Returns the
 `$fetchdef` array. Throws on error.
+
+
+---
+
+## AstEntity
+
+```php
+$ast = $client->Ast();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `string` | No | Token data |
+| `type` | `string` | No | Token type |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->Ast()->list();
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): AstEntity`
+
+Create a new `AstEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
 
 
 ---

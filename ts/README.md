@@ -5,7 +5,7 @@
 The TypeScript SDK for the MathFunctionParser API — a type-safe, entity-oriented client with full async/await support.
 
 The API is exposed as capitalised, semantic **Entities** — e.g.
-`client.Calc()` — each with a small set of operations (`list`, `load`)
+`client.Ast()` — each with a small set of operations (`list`, `load`)
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
@@ -33,17 +33,17 @@ import { MathFunctionParserSDK } from '@voxgig-sdk/math-function-parser-sdk'
 const client = new MathFunctionParserSDK()
 ```
 
-### 2. List calc records
+### 2. List ast records
 
-`list()` resolves to an array of Calc ENTITIES — every operation
+`list()` resolves to an array of Ast ENTITIES — every operation
 resolves to entities, not raw records. Iterate them directly, and call
 `.data()` on one for the record it holds:
 
 ```ts
-const calcs = await client.Calc().list({ expression: "example" })
+const asts = await client.Ast().list({ expression: "example" })
 
-for (const calc of calcs) {
-  console.log(calc)
+for (const ast of asts) {
+  console.log(ast)
 }
 ```
 
@@ -54,8 +54,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const tokenizes = await client.Tokenize().list()
-  console.log(tokenizes)
+  const calcs = await client.Calc().list()
+  console.log(calcs)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -121,10 +121,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MathFunctionParserSDK.test()
 
-const tokenize = await client.Tokenize().list()
-// tokenize is the entity, populated with mock response data
-// — call tokenize.data() for the record itself
-console.log(tokenize)
+const calc = await client.Calc().list()
+// calc is the entity, populated with mock response data
+// — call calc.data() for the record itself
+console.log(calc)
 ```
 
 You can also use the instance method:
@@ -139,7 +139,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Tokenize()
+const entity = client.Calc()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -222,6 +222,7 @@ new MathFunctionParserSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
+| `Ast(data?)` | `AstEntity` | Create an Ast entity instance. |
 | `Calc(data?)` | `CalcEntity` | Create a Calc entity instance. |
 | `Resolve(data?)` | `ResolveEntity` | Create a Resolve entity instance. |
 | `Tokenize(data?)` | `TokenizeEntity` | Create a Tokenize entity instance. |
@@ -292,6 +293,17 @@ The `prepare()` method returns:
 
 ### Entities
 
+#### Ast
+
+| Field | Description |
+| --- | --- |
+| `data` | Token data |
+| `type` | Token type |
+
+Operations: list.
+
+API path: `/v1/ast`
+
 #### Calc
 
 | Field | Description |
@@ -321,11 +333,35 @@ API path: `/v1/resolve`
 
 Operations: list.
 
-API path: `/v1/ast`
+API path: `/v1/tokenize`
 
 
 
 ## Entities
+
+
+### Ast
+
+Create an instance: `const ast = client.Ast()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `string` | Token data |
+| `type` | `string` | Token type |
+
+#### Example: List
+
+```ts
+const asts = await client.Ast().list({ expression: "example" })
+```
 
 
 ### Calc
@@ -546,11 +582,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const tokenize = client.Tokenize()
-await tokenize.list()
+const calc = client.Calc()
+await calc.list()
 
-// tokenize.data() now returns the tokenize data from the last `list`
-// tokenize.match() returns the last match criteria
+// calc.data() now returns the calc data from the last `list`
+// calc.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

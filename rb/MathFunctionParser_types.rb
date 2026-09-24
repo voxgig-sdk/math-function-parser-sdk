@@ -2,11 +2,37 @@
 
 # Typed models for the MathFunctionParser SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Member types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Member types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Ruby types are unenforced; these YARD
 # annotations document the shapes. Do not edit by hand.
+
+# Ast entity data model.
+#
+# @!attribute [rw] data
+#   @return [String, nil]
+#
+# @!attribute [rw] type
+#   @return [String, nil]
+Ast = Struct.new(
+  :data,
+  :type,
+  keyword_init: true
+)
+
+# Request payload for Ast#list.
+#
+# @!attribute [rw] expression
+#   @return [String]
+#
+# @!attribute [rw] x
+#   @return [String, nil]
+AstListMatch = Struct.new(
+  :expression,
+  :x,
+  keyword_init: true
+)
 
 # Calc entity data model.
 #

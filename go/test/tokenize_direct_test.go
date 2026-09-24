@@ -31,7 +31,7 @@ func TestTokenizeDirect(t *testing.T) {
 
 
 		result, err := client.Direct(map[string]any{
-			"path":   "v1/ast",
+			"path":   "v1/tokenize",
 			"method": "GET",
 			"params": map[string]any{},
 		})

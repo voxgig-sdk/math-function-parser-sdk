@@ -1,0 +1,22 @@
+# BasicCalcFlow
+
+main: kit: flow: BasicCalcFlow:
+{
+  entity: "calc",
+  kind: "basic",
+  name: "BasicCalcFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "calc_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCalcFlow"
+}

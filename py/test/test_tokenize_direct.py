@@ -25,7 +25,7 @@ class TestTokenizeDirect:
 
 
         result = client.direct({
-            "path": "v1/ast",
+            "path": "v1/tokenize",
             "method": "GET",
             "params": {},
         })

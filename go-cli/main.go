@@ -20,7 +20,7 @@ import (
 const prompt = "math-function-parser"
 
 // entitiesHelp is the space-separated entity list shown by /help.
-const entitiesHelp = "calc resolve tokenize"
+const entitiesHelp = "ast calc resolve tokenize"
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr))

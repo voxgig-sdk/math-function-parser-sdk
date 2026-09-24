@@ -1,0 +1,80 @@
+# Entity: ast
+
+main: kit: entity: ast: {
+
+  alias: field: {}
+
+  fields: {
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      sh: "Token data"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Token type"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "ast"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /v1/ast"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "expression"
+                or: "expression"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "x"
+                or: "x"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/ast"
+          q: {
+            exist: [
+              "expression"
+              "x"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "ast"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.tokens`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

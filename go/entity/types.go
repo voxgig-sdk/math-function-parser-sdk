@@ -1,7 +1,7 @@
 // Typed models for the MathFunctionParser SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -12,10 +12,18 @@ import (
 	"github.com/voxgig-sdk/math-function-parser-sdk/go/core"
 )
 
+// Ast is the typed data model for the ast entity.
+type Ast struct {
+}
+
+// AstListMatch is the typed request payload for Ast.ListTyped.
+type AstListMatch struct {
+	Expression string `json:"expression"`
+	X *string `json:"x,omitempty"`
+}
+
 // Calc is the typed data model for the calc entity.
 type Calc struct {
-	Data *string `json:"data,omitempty"`
-	Type *string `json:"type,omitempty"`
 }
 
 // CalcListMatch is the typed request payload for Calc.ListTyped.
@@ -36,8 +44,6 @@ type ResolveLoadMatch struct {
 
 // Tokenize is the typed data model for the tokenize entity.
 type Tokenize struct {
-	Data *string `json:"data,omitempty"`
-	Type *string `json:"type,omitempty"`
 }
 
 // TokenizeListMatch is the typed request payload for Tokenize.ListTyped.

@@ -264,7 +264,6 @@ func (sdk *MathFunctionParserSDK) rawRequest(fetchargs map[string]any) (map[stri
 		if !noBody {
 			if jf := vs.GetProp(fm, "json"); jf != nil {
 				if f, ok := jf.(func() any); ok {
-					// f() returns nil on parse error in our fetcher.
 					jsonData = f()
 				}
 			}
@@ -281,17 +280,6 @@ func (sdk *MathFunctionParserSDK) rawRequest(fetchargs map[string]any) (map[stri
 	return map[string]any{"ok": false, "err": ctx.MakeError("direct_invalid", "invalid response type")}, nil
 }
 
-// Raw GraphQL access: the pressure valve that makes the generated surface's
-// deliberate omissions (per-call selection sets, typed filter builders,
-// batching, subscriptions) livable — the whole schema stays reachable.
-//
-// Thin wrapper over the same prepare/fetch path Direct uses, with the one
-// thing raw Direct cannot do for GraphQL: a GraphQL failure rides HTTP 200
-// as a top-level `errors` array, so status alone would report a failed query
-// as ok.
-//
-// NOTE: like Direct, this bypasses the feature pipeline — no retry,
-// ratelimit or paging features apply.
 func (sdk *MathFunctionParserSDK) Graphql(
 	query string, variables map[string]any, ctrl map[string]any,
 ) (map[string]any, error) {
@@ -335,6 +323,14 @@ func (sdk *MathFunctionParserSDK) Graphql(
 	}
 
 	return res, nil
+}
+
+
+// Ast returns a Ast entity bound to this client.
+// Idiomatic usage: client.Ast(nil).List(nil, nil) or
+// client.Ast(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *MathFunctionParserSDK) Ast(data map[string]any) MathFunctionParserEntity {
+	return NewAstEntityFunc(sdk, data)
 }
 
 

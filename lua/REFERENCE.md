@@ -40,6 +40,10 @@ local client = sdk.test()
 
 ### Instance Methods
 
+#### `Ast(data)`
+
+Create a new `Ast` entity instance. Pass `nil` for no initial data.
+
 #### `Calc(data)`
 
 Create a new `Calc` entity instance. Pass `nil` for no initial data.
@@ -84,6 +88,59 @@ Prepare a fetch definition without sending the request. Accepts the
 same parameters as `direct()`.
 
 **Returns:** `table, err`
+
+
+---
+
+## AstEntity
+
+```lua
+local ast = client:Ast(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `string` | No | Token data |
+| `type` | `string` | No | Token type |
+
+### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:Ast():list()
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `AstEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
 
 
 ---

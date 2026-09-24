@@ -1,3 +1,4 @@
+import { AstEntity } from './entity/AstEntity';
 import { CalcEntity } from './entity/CalcEntity';
 import { ResolveEntity } from './entity/ResolveEntity';
 import { TokenizeEntity } from './entity/TokenizeEntity';
@@ -46,6 +47,7 @@ declare class MathFunctionParserSDK {
         data?: undefined;
     }>;
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
+    Ast(entopts?: Record<string, any>): AstEntity;
     Calc(entopts?: Record<string, any>): CalcEntity;
     Resolve(entopts?: Record<string, any>): ResolveEntity;
     Tokenize(entopts?: Record<string, any>): TokenizeEntity;

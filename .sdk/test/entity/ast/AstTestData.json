@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "ast": {
+      "AST00": {
+        "data": "s14",
+        "type": "s15"
+      },
+      "AST01": {
+        "data": "s28",
+        "type": "s29"
+      },
+      "AST02": {
+        "data": "s3c",
+        "type": "s3d"
+      }
+    }
+  },
+  "new": {
+    "ast": {
+      "ast_ref01": {
+        "data": "s50",
+        "type": "s51"
+      }
+    }
+  },
+  "requests": {
+    "GET /v1/ast": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -19,7 +19,6 @@ import type {
   CalcListMatch,
 } from '../MathFunctionParserTypes'
 
-// TODO: needs Entity superclass
 class CalcEntity extends MathFunctionParserEntityBase<Calc> {
 
   constructor(client: MathFunctionParserSDK, entopts: any) {

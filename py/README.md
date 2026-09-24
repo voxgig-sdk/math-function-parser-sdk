@@ -4,7 +4,7 @@
 
 The Python SDK for the MathFunctionParser API — an entity-oriented client following Pythonic conventions.
 
-The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Calc()` — each
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Ast()` — each
 carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
 paths and query strings. You work with named resources and verbs, which
 keeps the cognitive load low.
@@ -36,16 +36,16 @@ from mathfunctionparser_sdk import MathFunctionParserSDK
 client = MathFunctionParserSDK()
 ```
 
-### 2. List calc records
+### 2. List ast records
 
 `list()` returns a `list` of records (each a `dict`) and raises on
 error — iterate it directly.
 
 ```python
 try:
-    calcs = client.Calc().list({"expression": "example"})
-    for calc in calcs:
-        print(calc)
+    asts = client.Ast().list({"expression": "example"})
+    for ast in asts:
+        print(ast)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -57,8 +57,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    tokenizes = client.Tokenize().list()
-    print(tokenizes)
+    calcs = client.Calc().list()
+    print(calcs)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -126,8 +126,8 @@ client = MathFunctionParserSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-tokenize = client.Tokenize().list()
-# tokenize contains the mock response record
+calc = client.Calc().list()
+# calc contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -203,6 +203,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
+| `Ast` | `(data) -> AstEntity` | Create an Ast entity instance. |
 | `Calc` | `(data) -> CalcEntity` | Create a Calc entity instance. |
 | `Resolve` | `(data) -> ResolveEntity` | Create a Resolve entity instance. |
 | `Tokenize` | `(data) -> TokenizeEntity` | Create a Tokenize entity instance. |
@@ -242,6 +243,17 @@ On error, `ok` is `False` and `err` contains the error value.
 
 ### Entities
 
+#### Ast
+
+| Field | Description |
+| --- | --- |
+| `data` | Token data |
+| `type` | Token type |
+
+Operations: List.
+
+API path: `/v1/ast`
+
 #### Calc
 
 | Field | Description |
@@ -271,11 +283,35 @@ API path: `/v1/resolve`
 
 Operations: List.
 
-API path: `/v1/ast`
+API path: `/v1/tokenize`
 
 
 
 ## Entities
+
+
+### Ast
+
+Create an instance: `ast = client.Ast()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list()` | List entities, optionally matching the given criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `str` | Token data |
+| `type` | `str` | Token type |
+
+#### Example: List
+
+```python
+asts = client.Ast().list({"expression": "example"})
+```
 
 
 ### Calc
@@ -503,11 +539,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-tokenize = client.Tokenize()
-tokenize.list()
+calc = client.Calc()
+calc.list()
 
-# tokenize.data_get() now returns the tokenize data from the last list
-# tokenize.match_get() returns the last match criteria
+# calc.data_get() now returns the calc data from the last list
+# calc.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

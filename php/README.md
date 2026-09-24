@@ -4,7 +4,7 @@
 
 The PHP SDK for the MathFunctionParser API — an entity-oriented client using PHP conventions.
 
-The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Calc()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Ast()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
 
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
@@ -31,13 +31,13 @@ require_once 'mathfunctionparser_sdk.php';
 $client = new MathFunctionParserSDK();
 ```
 
-### 2. List calc records
+### 2. List ast records
 
 ```php
 try {
     // list() returns entity instances; data_get() reads each record.
-    $calcs = $client->Calc()->list();
-    foreach ($calcs as $record) {
+    $asts = $client->Ast()->list();
+    foreach ($asts as $record) {
         $item = $record->data_get();
         echo $item["data"] . "\n";
     }
@@ -54,7 +54,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $tokenizes = $client->Tokenize()->list();
+    $calcs = $client->Calc()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -128,8 +128,8 @@ $client = MathFunctionParserSDK::test();
 
 // list() returns entity instances (throws on error);
 // call data_get() for the mock record.
-$tokenize = $client->Tokenize()->list();
-print_r(array_map(fn($item) => $item->data_get(), $tokenize));
+$calc = $client->Calc()->list();
+print_r(array_map(fn($item) => $item->data_get(), $calc));
 ```
 
 ### Use a custom fetch function
@@ -208,6 +208,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
+| `Ast` | `($data): AstEntity` | Create an Ast entity instance. |
 | `Calc` | `($data): CalcEntity` | Create a Calc entity instance. |
 | `Resolve` | `($data): ResolveEntity` | Create a Resolve entity instance. |
 | `Tokenize` | `($data): TokenizeEntity` | Create a Tokenize entity instance. |
@@ -247,6 +248,17 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 ### Entities
 
+#### Ast
+
+| Field | Description |
+| --- | --- |
+| `data` | Token data |
+| `type` | Token type |
+
+Operations: List.
+
+API path: `/v1/ast`
+
 #### Calc
 
 | Field | Description |
@@ -276,11 +288,36 @@ API path: `/v1/resolve`
 
 Operations: List.
 
-API path: `/v1/ast`
+API path: `/v1/tokenize`
 
 
 
 ## Entities
+
+
+### Ast
+
+Create an instance: `$ast = $client->Ast();`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `string` | Token data |
+| `type` | `string` | Token type |
+
+#### Example: List
+
+```php
+// list() returns an array of Ast records (throws on error).
+$asts = $client->Ast()->list();
+```
 
 
 ### Calc
@@ -512,11 +549,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$tokenize = $client->Tokenize();
-$tokenize->list();
+$calc = $client->Calc();
+$calc->list();
 
-// $tokenize->data_get() now returns the tokenize data from the last list
-// $tokenize->match_get() returns the last match criteria
+// $calc->data_get() now returns the calc data from the last list
+// $calc->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

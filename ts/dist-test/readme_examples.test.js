@@ -70,7 +70,7 @@ const __1 = require("..");
 const SDK_NAME = 'MathFunctionParserSDK';
 // A fixture for every entity, so list()/load() resolve offline with no
 // network. Snippet client construction is rewritten to seed this.
-const TEST_SEED = { "entity": { "calc": { "test01": { "id": "test01" } }, "resolve": { "test01": { "id": "test01" } }, "tokenize": { "test01": { "id": "test01" } } } };
+const TEST_SEED = { "entity": { "ast": { "test01": { "id": "test01" } }, "calc": { "test01": { "id": "test01" } }, "resolve": { "test01": { "id": "test01" } }, "tokenize": { "test01": { "id": "test01" } } } };
 const SEED_ARG = JSON.stringify(TEST_SEED);
 const SEEDED_CTOR = SDK_NAME + '.test(' + SEED_ARG + ')';
 // The three docs this gate covers, resolved relative to dist-test/.

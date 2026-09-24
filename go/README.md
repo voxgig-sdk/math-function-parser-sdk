@@ -4,7 +4,7 @@
 
 The Golang SDK for the MathFunctionParser API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
-It exposes the API as capitalised, semantic **Entities** — e.g. `client.Calc(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Ast(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
 > Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // List calc records — the value is the array of records itself.
-    calcs, err := client.Calc(nil).List(nil, nil)
+    // List ast records — the value is the array of records itself.
+    asts, err := client.Ast(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-    for _, item := range calcs.([]any) {
+    for _, item := range asts.([]any) {
         fmt.Println(item)
     }
 }
@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-tokenizes, err := client.Tokenize(nil).List(nil, nil)
+calcs, err := client.Calc(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = tokenizes
+_ = calcs
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-tokenize, err := client.Tokenize(nil).List(
+calc, err := client.Calc(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(tokenize) // the returned mock data
+fmt.Println(calc) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -220,6 +220,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
+| `Ast` | `(data map[string]any) MathFunctionParserEntity` | Create an Ast entity instance. |
 | `Calc` | `(data map[string]any) MathFunctionParserEntity` | Create a Calc entity instance. |
 | `Resolve` | `(data map[string]any) MathFunctionParserEntity` | Create a Resolve entity instance. |
 | `Tokenize` | `(data map[string]any) MathFunctionParserEntity` | Create a Tokenize entity instance. |
@@ -251,14 +252,25 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    calc, err := client.Calc(nil).List(map[string]any{/* fields */}, nil)
+    ast, err := client.Ast(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // calc is the returned record
+    // ast is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
+
+#### Ast
+
+| Field | Description |
+| --- | --- |
+| `"data"` | Token data |
+| `"type"` | Token type |
+
+Operations: List.
+
+API path: `/v1/ast`
 
 #### Calc
 
@@ -289,11 +301,39 @@ API path: `/v1/resolve`
 
 Operations: List.
 
-API path: `/v1/ast`
+API path: `/v1/tokenize`
 
 
 
 ## Entities
+
+
+### Ast
+
+Create an instance: `ast := client.Ast(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `string` | Token data |
+| `type` | `string` | Token type |
+
+#### Example: List
+
+```go
+asts, err := client.Ast(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(asts) // the array of records
+```
 
 
 ### Calc
@@ -530,11 +570,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-tokenize := client.Tokenize(nil)
-tokenize.List(nil, nil)
+calc := client.Calc(nil)
+calc.List(nil, nil)
 
-// tokenize.Data() now returns the tokenize data from the last list
-// tokenize.Match() returns the last match criteria
+// calc.Data() now returns the calc data from the last list
+// calc.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

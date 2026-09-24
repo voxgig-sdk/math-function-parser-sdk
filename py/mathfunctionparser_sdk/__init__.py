@@ -307,6 +307,12 @@ class MathFunctionParserSDK:
         return res
 
 
+    def Ast(self, data=None) -> "AstEntity":
+        """Entity factory: client.Ast().list() / client.Ast().load({"id": ...})."""
+        from mathfunctionparser_sdk.entity.ast_entity import AstEntity
+        return AstEntity(self, data)
+
+
     def Calc(self, data=None) -> "CalcEntity":
         """Entity factory: client.Calc().list() / client.Calc().load({"id": ...})."""
         from mathfunctionparser_sdk.entity.calc_entity import CalcEntity
@@ -352,6 +358,7 @@ class MathFunctionParserSDK:
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from mathfunctionparser_sdk.entity.ast_entity import AstEntity
     from mathfunctionparser_sdk.entity.calc_entity import CalcEntity
     from mathfunctionparser_sdk.entity.resolve_entity import ResolveEntity
     from mathfunctionparser_sdk.entity.tokenize_entity import TokenizeEntity

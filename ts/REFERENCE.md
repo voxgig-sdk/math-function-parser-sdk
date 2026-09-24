@@ -48,6 +48,18 @@ const client = MathFunctionParserSDK.test()
 
 ### Instance Methods
 
+#### `Ast(data?: object)`
+
+Create a new `Ast` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `AstEntity` instance.
+
 #### `Calc(data?: object)`
 
 Create a new `Calc` entity instance.
@@ -126,6 +138,57 @@ same parameters as `direct()`.
 Alias for `MathFunctionParserSDK.test()`.
 
 **Returns:** `MathFunctionParserSDK` instance in test mode.
+
+
+---
+
+## AstEntity
+
+```ts
+const ast = client.Ast()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `string` | No | Token data |
+| `type` | `string` | No | Token type |
+
+### Operations
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Returns an array.
+
+```ts
+const results = await client.Ast().list({ expression: "example" })
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `AstEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `MathFunctionParserSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
 
 
 ---

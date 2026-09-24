@@ -91,23 +91,99 @@ module MathFunctionParserConfig
           "content-type" => "application/json",
         },
         "entity" => {
+          "ast" => {},
           "calc" => {},
           "resolve" => {},
           "tokenize" => {},
         },
       },
       "entity" => {
+        "ast" => {
+          "fields" => [
+            {
+              "name" => "data",
+              "title" => "Data",
+              "type" => "`$STRING`",
+              "short" => "Token data",
+            },
+            {
+              "name" => "type",
+              "title" => "Type",
+              "type" => "`$STRING`",
+              "short" => "Token type",
+            },
+          ],
+          "name" => "ast",
+          "op" => {
+            "list" => {
+              "input" => "data",
+              "name" => "list",
+              "points" => [
+                {
+                  "kind" => "http",
+                  "method" => "GET",
+                  "orig" => "/v1/ast",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "ast",
+                    },
+                  ],
+                  "parts" => [
+                    "v1",
+                    "ast",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.tokens`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "expression",
+                        "orig" => "expression",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "x",
+                        "orig" => "x",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "expression",
+                      "x",
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          "relations" => {
+            "ancestors" => [],
+          },
+        },
         "calc" => {
           "fields" => [
             {
               "name" => "data",
-              "short" => "Token data",
+              "title" => "Data",
               "type" => "`$STRING`",
+              "short" => "Token data",
             },
             {
               "name" => "type",
-              "short" => "Token type",
+              "title" => "Type",
               "type" => "`$STRING`",
+              "short" => "Token type",
             },
           ],
           "name" => "calc",
@@ -117,23 +193,6 @@ module MathFunctionParserConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "expression",
-                        "orig" => "expression",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "x",
-                        "orig" => "x",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/calc",
@@ -145,20 +204,38 @@ module MathFunctionParserConfig
                       "lit" => "calc",
                     },
                   ],
+                  "parts" => [
+                    "v1",
+                    "calc",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "expression",
+                        "orig" => "expression",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "x",
+                        "orig" => "x",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "expression",
                       "x",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "v1",
-                    "calc",
-                  ],
                 },
               ],
             },
@@ -176,23 +253,6 @@ module MathFunctionParserConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "expression",
-                        "orig" => "expression",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "x",
-                        "orig" => "x",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/resolve",
@@ -204,20 +264,38 @@ module MathFunctionParserConfig
                       "lit" => "resolve",
                     },
                   ],
+                  "parts" => [
+                    "v1",
+                    "resolve",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "expression",
+                        "orig" => "expression",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "x",
+                        "orig" => "x",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "expression",
                       "x",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "v1",
-                    "resolve",
-                  ],
                 },
               ],
             },
@@ -230,13 +308,15 @@ module MathFunctionParserConfig
           "fields" => [
             {
               "name" => "data",
-              "short" => "Token data",
+              "title" => "Data",
               "type" => "`$STRING`",
+              "short" => "Token data",
             },
             {
               "name" => "type",
-              "short" => "Token type",
+              "title" => "Type",
               "type" => "`$STRING`",
+              "short" => "Token type",
             },
           ],
           "name" => "tokenize",
@@ -246,67 +326,6 @@ module MathFunctionParserConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "expression",
-                        "orig" => "expression",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "x",
-                        "orig" => "x",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
-                  "kind" => "http",
-                  "method" => "GET",
-                  "orig" => "/v1/ast",
-                  "segments" => [
-                    {
-                      "lit" => "v1",
-                    },
-                    {
-                      "lit" => "ast",
-                    },
-                  ],
-                  "select" => {
-                    "exist" => [
-                      "expression",
-                      "x",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.tokens`",
-                  },
-                  "parts" => [
-                    "v1",
-                    "ast",
-                  ],
-                },
-                {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "expression",
-                        "orig" => "expression",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "x",
-                        "orig" => "x",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/tokenize",
@@ -318,20 +337,38 @@ module MathFunctionParserConfig
                       "lit" => "tokenize",
                     },
                   ],
+                  "parts" => [
+                    "v1",
+                    "tokenize",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.tokens`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "expression",
+                        "orig" => "expression",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "x",
+                        "orig" => "x",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "expression",
                       "x",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.tokens`",
-                  },
-                  "parts" => [
-                    "v1",
-                    "tokenize",
-                  ],
                 },
               ],
             },

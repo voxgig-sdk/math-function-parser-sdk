@@ -43,6 +43,7 @@ class ReadmeExamplesTest < Minitest::Test
 
   # Entity accessor (client.<Name>) => fixture storage key (lowercase name).
   ENTITIES = {
+    "Ast" => "ast",
     "Calc" => "calc",
     "Resolve" => "resolve",
     "Tokenize" => "tokenize",

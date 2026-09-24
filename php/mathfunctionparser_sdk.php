@@ -341,6 +341,24 @@ class MathFunctionParserSDK
     }
 
 
+    private $_ast = null;
+
+    // Canonical facade: $client->Ast()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->ast()
+    // resolves here too.
+    public function Ast($data = null)
+    {
+        require_once __DIR__ . '/entity/ast_entity.php';
+        if ($data === null) {
+            if ($this->_ast === null) {
+                $this->_ast = new AstEntity($this, null);
+            }
+            return $this->_ast;
+        }
+        return new AstEntity($this, $data);
+    }
+
+
     private $_calc = null;
 
     // Canonical facade: $client->Calc()->list() / ->load(["id" => ...]).

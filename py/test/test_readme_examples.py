@@ -76,6 +76,7 @@ _CLIENT_VARS = ("client", "sdk")
 
 # The API's capitalised semantic entities -> lowercase fixture key.
 _ENTITIES = {
+    "Ast": "ast",
     "Calc": "calc",
     "Resolve": "resolve",
     "Tokenize": "tokenize",

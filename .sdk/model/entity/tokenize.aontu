@@ -1,0 +1,80 @@
+# Entity: tokenize
+
+main: kit: entity: tokenize: {
+
+  alias: field: {}
+
+  fields: {
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      sh: "Token data"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Token type"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "tokenize"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /v1/tokenize"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "expression"
+                or: "expression"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "x"
+                or: "x"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/tokenize"
+          q: {
+            exist: [
+              "expression"
+              "x"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "tokenize"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.tokens`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

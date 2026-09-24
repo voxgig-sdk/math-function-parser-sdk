@@ -1,7 +1,7 @@
 # Typed models for the MathFunctionParser SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Field/param types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
 #
@@ -14,6 +14,19 @@
 from __future__ import annotations
 
 from typing import TypedDict, Any
+
+
+class Ast(TypedDict, total=False):
+    data: str
+    type: str
+
+
+class AstListMatchRequired(TypedDict):
+    expression: str
+
+
+class AstListMatch(AstListMatchRequired, total=False):
+    x: str
 
 
 class Calc(TypedDict, total=False):
